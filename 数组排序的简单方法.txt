@@ -1,0 +1,6 @@
+function sortNumber(a,b){
+	return a-b;
+}
+//ÅÅÐòº¯Êý
+
+document.write(arr.sort(sortNumber))
