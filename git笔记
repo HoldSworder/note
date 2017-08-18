@@ -72,4 +72,10 @@ git push -u origin master 将本地仓库上传至github
 
 git pull 复制代码到本地
 
+git clone （地址） 下载代码
+快速关联空仓库方法
+利用 git clone命令
+省去了 init / git remote add origin /git push -u origin master
+
+
 
