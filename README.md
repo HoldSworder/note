@@ -2,6 +2,6 @@
 =======
 
 目前学习顺序</br>
-    js => node.js => webpack => vue.js => python
+    `js` => `node.js` => `webpack` => `vue.js` => `python`
 -----
 
