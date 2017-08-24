@@ -118,7 +118,7 @@ this只在`age`方法的函数内指向`xiaoming`假如在函数内部定义的`
 
 改进办法为
 
-在方法内的函数一开始就利用变量 捕获`this`
+在方法内的函数一开始就利用`that`变量 捕获`this`
 
     var xiaoming = {
         name: '小明',
