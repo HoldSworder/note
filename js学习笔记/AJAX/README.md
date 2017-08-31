@@ -49,3 +49,73 @@ AJAX是异步执行的请求 所以要通过回调函数获得响应。
 
 最后调用`send()`方法才真正发送请求。`GET`请求不需要参数，`POST`请求需要把body部分以字符串或者`formData`对象传进去。
 
+跨域问题
+--------
+
+上面代码url使用的相对路径。如果改为`http://www.sina.com.cn`肯定报错
+
+这是因为浏览器的同源策略导致。默认情况下，js在发送AJAX  请求时，URL的域名必须和当前页面完全一致
+
+完全一致的意思是，域名要相同（www.example.com和example.com不同），协议要相同（http和https不同），端口号要相同（默认是:80端口，它和:8080就不同）。有的浏览器口子松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。
+
+##解决跨域的方法有
+
+一、通过FLASH插件发送HTTP请求，这种方式可以绕过浏览器的安全限制，但不虚安装FLASH，并跟FLASH交互。现在用的越来越少
+
+二、通过在同源域名下架设一个代理服务器来转发，js负责把请求发送到代理服务器：
+
+    '/proxy?url=http://www.sina.com.cn'
+
+代理服务器再把结果返回，这样就遵守了浏览器的同源策略，麻烦之处在于需要服务器端额外做开发
+
+三、第三种方法称为JSONP，他有个限制，只能用GET请求，并且要求返回js。这种方式跨域实际上是利用了浏览器允许跨域引用js资源：
+
+    <html>
+    <head>
+        <script src="http://example.com/abc.js"></script>
+        ...
+    </head>
+    <body>
+    ...
+    </body>
+    </html>
+
+JSONP通常以函数调用的形式返回，例如返回js内容如下：
+
+    foo('data');
+
+这样一来，我们如果在页面中线准备好`foo()`函数，然后给页面动态加一个`<script>`节点，相当于动态读取外域的js资源，最后就等着接收回调了。
+
+
+CORS
+---------
+H5的新跨域策略：CORS（跨域资源共享）
+
+CORS全称Cross-Origin Resource Sharing，是HTML5规范定义的如何跨域访问资源。
+
+它允许浏览器想跨源服务器，发出`XMLHttpRequest`请求，从而克服了AJAX只能同源使用的限制。
+
+CORS需要浏览器和服务器的同时支持。目前所有浏览器都支持该功能
+
+整个CORS通信过程，都是浏览器自动完成，不需要用户参与，对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加头信息
+
+因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信
+
+##两种请求
+
+浏览器将CORS请求分为两类：简单请求和非简单请求。
+
+只要同时满足以下两大条件，就属于简单请求
+
+    （1) 请求方法是以下三种方法之一：
+    HEAD
+    GET
+    POST
+    （2）HTTP的头信息不超出以下几种字段：
+    Accept
+    Accept-Language
+    Content-Language
+    Last-Event-ID
+    Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
+
+
