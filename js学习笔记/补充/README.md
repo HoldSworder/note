@@ -17,7 +17,14 @@ log(asdf,dfaf)
 
 
  调试
- ----------
+----------
  var log = function(){
      console.log.apply(console,arguments)
  }
+
+ 循环控制
+----------
+
+break 终止循环
+
+continue 跳过本次循环
