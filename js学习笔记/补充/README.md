@@ -17,7 +17,6 @@ log(asdf,dfaf)
 
 
  调试
-<<<<<<< HEAD
 --------
 
     var log = function(){
@@ -41,7 +40,6 @@ includes
     }
 
 
-=======
 ----------
  var log = function(){
      console.log.apply(console,arguments)
@@ -53,4 +51,3 @@ includes
 break 终止循环
 
 continue 跳过本次循环
->>>>>>> 10a7a25187def6169563b0829d032084a92c892f
