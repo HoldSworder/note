@@ -17,7 +17,26 @@ log(asdf,dfaf)
 
 
  调试
- ----------
- var log = function(){
-     console.log.apply(console,arguments)
- }
+--------
+
+    var log = function(){
+        console.log.apply(console,arguments)
+    }
+
+字符串包含
+--------
+
+includes
+
+'impossible'.include('poss') //true
+
+测试函数
+------
+
+    function ensure(condition,message) {
+        if(!condition) {
+            console.log(message)
+        }
+    }
+
+
