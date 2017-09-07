@@ -1,7 +1,15 @@
 ```js
 function bouncer(arr) {
-    arr.filter(x => x == false)
+    arr.filter(x => x)
 }
+
+or
+
+function bouncer(arr) {
+    arr.filter( Boolean )
+}
+
+or
 
 function bouncer(arr) {
   // 请把你的代码写在这里
