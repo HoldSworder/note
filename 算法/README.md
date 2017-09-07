@@ -1,23 +1,27 @@
 js算法常用方法
 ---------
 
-####split()
+split()
+-----
 
 split()方法使用指定的分隔符字符串将一个String对象分割成字符串数组
 
 如 string.split(' ')
 
-##reverse()
+reverse()
+-------
 
 reverse()方法将数组元素的位置颠倒
 
-##join()
+join()
+---------
 
 join()方法将数组所有元素连接到一个字符串中
 
 参数默认为','
 
-##replace()
+replace()
+---------
 
 replace()方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
 
@@ -31,7 +35,8 @@ replace(a,b)
 
     .replace(/[^a-z0-9]/g,'')
 
-##slice()
+slice()
+---------
 
 slice()方法可从已有数组中返回选定的元素
 
@@ -43,7 +48,8 @@ slice()方法可从已有数组中返回选定的元素
 
 substr(a,b)方法的用法为 从a开始截取b个字符串
 
-##filter()
+filter()
+----------
 
 过滤所有符合callback函数的数组元素
 
