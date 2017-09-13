@@ -25,4 +25,36 @@
         </div>
     </div>
 </body>
+
+<script>
+
+        var add = document.querySelector('#add')
+        add.addEventListener('click', function(){
+            var text = document.querySelector('#text').value
+            var container = document.querySelector('.container')
+
+            // var str = function(v){ 
+            //    var a =  `
+            //         <div class="cell">
+            //             <button class="done">完成</button>
+            //             <button class="delete">删除</button>
+            //             <span>${v}</span>
+            //         </div>
+            //     ` 
+            //     return a
+            // }
+            var str =  `
+                    <div class="cell">
+                        <button class="done">完成</button>
+                        <button class="delete">删除</button>
+                        <span>${text}</span>
+                    `
+
+            // var b = str(text)
+            container.insertAdjacentHTML('beforeend', str)
+
+        })
+        
+ 
+</script>
 </html>
