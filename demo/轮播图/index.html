@@ -56,19 +56,19 @@
         active.classList.add('active')
     }
 
-    // function after() {
-    //     a = (a - 1) % b
-    //     var box = document.querySelector('.box')
-    //     var image = document.querySelector('.active')
-    //     image.classList.remove('active')
-    //     var active = document.querySelectorAll('img')[-a]
-    //     active.classList.add('active')
-    // }
+    function after() {
+        a = Math.abs(-a - 1) % b
+        var box = document.querySelector('.box')
+        var image = document.querySelector('.active')
+        image.classList.remove('active')
+        var active = document.querySelectorAll('img')[a]
+        active.classList.add('active')
+    }
 
-    // var button_after = document.querySelector('.after')
-    // button_after.addEventListener('click', function(){
-    //     after()
-    // })
+    var button_after = document.querySelector('.after')
+    button_after.addEventListener('click', function(){
+        after()
+    })
 
 
     var button_next = document.querySelector('.next')
