@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>todo</title>
     <style>
-    
+        .ok{
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +56,27 @@
             container.insertAdjacentHTML('beforeend', str)
 
         })
+
+        var container = document.querySelector('.container')
+       
+
+        container.addEventListener('click', function(event){
+            var target = event.target
+            var div = target.parentElement
+            if(target.classList.contains('done')){
+                toggleClass(div, 'ok')
+            }else{
+                div.remove()
+            }
+        })
+
+        function toggleClass(a, b){
+            if(a.classList.contains(b)){
+                a.classList.remove(b)
+            }else{
+                a.classList.add(b)
+            }
+        }
         
  
 </script>
