@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX</title>
+</head>
+<body>
+    <div class="text">改变此内容</div>
+    <button id="button">按此处</button>
+</body>
+<script>
+    var button = document.querySelector('#button')
+    var text = document.querySelector('.text')
+    var xmlhttp
+    function load() {
+        xmlhttp = new XMLHttpRequest()
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState ==4 && xmlhttp.status == 200) {
+                text.innerHTML = xmlhttp.responseText
+            } else {
+                text.innerHTML = 'GG'
+            }
+        }
+        
+        xmlhttp.open('GET', 'a.txt', true)
+        xmlhttp.send()
+    }
+
+    button.addEventListener('click', function(){
+        load()
+    })
+</script>
+</html>
