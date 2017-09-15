@@ -1,5 +1,9 @@
-入口-entry
---------
-可以将应用程序的入口起点认为是根上下文或app第一个启动文件
+将js或其他文件中的后端代码 打包成一个web 可以识别的文件
 
-在webpack中，我们利用webpack配置对象中的`entry`属性来定义入口
+如node文件
+
+安装
+----------
+npm init -y
+
+npm webpack -D  //-D === --save-dev
