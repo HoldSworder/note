@@ -7,3 +7,10 @@
 npm init -y
 
 npm webpack -D  //-D === --save-dev
+
+配置webpack
+----------
+为了避免手写本地webpack太长的地址命令
+
+可以新建webpack.config.js文件对webpack进行配置
+
