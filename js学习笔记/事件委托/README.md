@@ -12,3 +12,7 @@ event.target就指向被点击的元素
 
 event.preventDefault()用于阻止事件的默认行为 如enter插入回车等（常用）
 在vue中封装为default
+
+    document.getElementById('x').addEventListener('click',function(e){
+        e.target  //e.target就是被点击的元素
+    })
