@@ -25,3 +25,7 @@ active-class属性指定激活标签时使用的class标签
 在index.js中配置
     path: '/detail'
     redirect: '/detail/analysis'
+
+利用事件跳转
+--------
+this.$route.push({path: '/xxx'})
