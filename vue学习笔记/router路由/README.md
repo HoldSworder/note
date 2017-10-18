@@ -29,3 +29,25 @@ active-class属性指定激活标签时使用的class标签
 利用事件跳转
 --------
 this.$route.push({path: '/xxx'})
+
+动态路由
+----------
+在to中设置 :to={name:'cart',params:{cartId:123}}
+
+路由配置中 path: '/cart/:cartId'
+
+即可设置路由参数cartId
+
+命名视图  //可用其他形式 很少使用
+----------
+在vue文件中使用多个router-view
+
+<router-view name='title'>
+
+需要在配置中定义
+components: {
+    default: xxx, //默认
+    title: xxx,  //当name为title时用哪个路由
+    。。。
+}
+
