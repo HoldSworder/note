@@ -20,6 +20,9 @@ rest是对参数arguments的扩展
 
     function animals(...types) {
         console.log(types)
+        for(var i of types) {
+            i
+        }
     }
 
     animals('cat','dog','fish')

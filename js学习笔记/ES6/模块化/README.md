@@ -15,3 +15,8 @@ es6中
     //content.js
     export default 'A cat'
 
+可以利用 * as 调用
+
+    export * as a from 'xxx'
+
+    然后利用 a.xxx 调用暴露出的方法

@@ -11,4 +11,15 @@ css作用域
 ---------
 在style标签中设置scoped属性 即可限定作用域在当前页面或组件
 
-<style scoped>
+<style scoped></style>
+
+
+插槽slot
+---------
+使用<slot></slot>进行组件插槽
+
+多个插槽使用name定位
+
+<slot name='a'><slot>
+
+<span slot='a'></span>
