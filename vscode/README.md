@@ -1,6 +1,6 @@
 使用技巧
 
-shift+alt+F 一键改变缩进
+shift+alt+F 格式化代码
 
 ctrl+D  快速选择单词
 
