@@ -9,4 +9,5 @@ vue.js vue-cli vue-router axios vuex webpack
 
     stylus css预处理器
     fetch  新ajax方法
+    jade   html模版引擎
     emmmmm........
