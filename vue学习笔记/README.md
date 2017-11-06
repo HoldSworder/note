@@ -23,3 +23,13 @@ css作用域
 <slot name='a'><slot>
 
 <span slot='a'></span>
+
+获取dom ref
+-------------
+在dom中绑定ref属性
+
+<div ref='div'></div>
+
+即可使用this.$refs.div获取div元素 不用document了
+
+注意需要在dom渲染完成后使用 即mounted函数中 或者利用$nextTick()
