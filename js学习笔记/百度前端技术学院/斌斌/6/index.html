@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    li {
+      background-color: red;
+      display: inline-block;
+      margin: 5px;
+      padding: 5px
+    }
+  </style>
+</head>
+
+<body>
+  <textarea rows="" cols=""></textarea>
+  <button>左侧入</button>
+  <button>右侧入</button>
+  <span>|</span>
+  <button>左侧出</button>
+  <button>右侧出</button>
+  <br>
+  <input type="text" id="input-search">
+  <button>搜索</button>
+  <ul id="ul">
+
+  </ul>
+
+  <script>
+    const btn = document.querySelectorAll('button')
+    const ul = document.querySelector('#ul')
+    const input = document.querySelector('textarea')
+    const inputSearch = document.querySelector('#input-search')
+
+    function addNode(text) {
+      var newNode = document.createElement('li')
+      newNode.innerText = text
+      return newNode
+    }
+
+    function click(btn, position) {
+      btn.addEventListener('click', () => {
+        if (position == 'leftIn') {
+          ul.insertBefore(addNode(input.value), ul.firstChild)
+        } else if (position == 'rightIn') {
+          ul.appendChild(addNode(input.value))
+        } else if (position == 'leftOut') {
+          alert(ul.firstChild.innerHTML)
+          ul.removeChild(ul.firstChild)
+        } else {
+          alert(ul.lastChild)
+          ul.removeChild(ul.lastChild)
+        }
+      })
+    }
+
+    click(btn[0], 'leftIn')
+    click(btn[1], 'rightIn')
+    click(btn[2], 'leftOut')
+    click(btn[3], 'rightOut')
+
+    ul.addEventListener('click', (e) => {
+      ul.removeChild(e.target)
+    })
+
+    function search() {
+      var arr = []
+
+      for (let i = 0; i < ul.children.length; i++) {
+        arr.push(ul.children[i].innerText)
+        
+      }
+
+      var searchArr = inputSearch.value.split('')
+      var num = 0
+      
+      function result() {
+        arr.forEach(i => {
+          searchArr.forEach(k => {
+            if(i.indexOf(k) != -1) {
+              num ++
+            }
+          })
+          if (num == searchArr.length) {
+            return i
+          }
+        })
+      }
+
+      console.log(result())
+
+    }
+
+    btn[4].addEventListener('click', () => {
+      search()
+    })
+
+
+  </script>
+</body>
+
+
+</html>
