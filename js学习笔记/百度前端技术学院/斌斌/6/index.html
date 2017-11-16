@@ -30,88 +30,88 @@
 
   </ul>
 
-  <script>
-    const btn = document.querySelectorAll('button')
-    const ul = document.querySelector('#ul')
-    const input = document.querySelector('textarea')
-    const inputSearch = document.querySelector('#input-search')
 
-    function addNode(text) {
-      var newNode = document.createElement('li')
-      newNode.innerText = text
-      return newNode
-    }
+</body>
+<script>
+  const btn = document.querySelectorAll('button')
+  const ul = document.querySelector('#ul')
+  const input = document.querySelector('textarea')
+  const inputSearch = document.querySelector('#input-search')
+  
 
-    function click(btn, position) {
-      btn.addEventListener('click', () => {
-        if (position == 'leftIn') {
-          ul.insertBefore(addNode(input.value), ul.firstChild)
-        } else if (position == 'rightIn') {
-          ul.appendChild(addNode(input.value))
-        } else if (position == 'leftOut') {
-          alert(ul.firstChild.innerHTML)
-          ul.removeChild(ul.firstChild)
-        } else {
-          alert(ul.lastChild)
-          ul.removeChild(ul.lastChild)
+  function addNode(text) {
+    var newNode = document.createElement('li')
+    newNode.innerText = text
+    return newNode
+  }
+
+  function click(btn, position) {
+    btn.addEventListener('click', () => {
+      if (position == 'leftIn') {
+        ul.insertBefore(addNode(input.value), ul.firstChild)
+      } else if (position == 'rightIn') {
+        ul.appendChild(addNode(input.value))
+      } else if (position == 'leftOut') {
+        alert(ul.firstChild.innerHTML)
+        ul.removeChild(ul.firstChild)
+      } else {
+        alert(ul.lastChild)
+        ul.removeChild(ul.lastChild)
+      }
+    })
+  }
+
+  click(btn[0], 'leftIn')
+  click(btn[1], 'rightIn')
+  click(btn[2], 'leftOut')
+  click(btn[3], 'rightOut')
+
+  ul.addEventListener('click', (e) => {
+    ul.removeChild(e.target)
+  })
+
+  function result(arr, searchArr) {
+    var num = 0
+    var numArr = []
+    var text = []
+
+    arr.forEach((i, x) => {
+      searchArr.forEach(k => {
+        if (i.indexOf(k) != -1) {
+          num++
         }
       })
+      numArr.push(num)
+      if (num == searchArr.length) {
+        text.push(x)
+      }
+      num = 0
+    })
+    return text
+  }
+
+  function search() {
+    var arr = []
+
+    for (let i = 0; i < ul.children.length; i++) {
+      arr.push(ul.children[i].innerText)
     }
 
-    click(btn[0], 'leftIn')
-    click(btn[1], 'rightIn')
-    click(btn[2], 'leftOut')
-    click(btn[3], 'rightOut')
+    var searchArr = inputSearch.value.split('')
 
-    ul.addEventListener('click', (e) => {
-      ul.removeChild(e.target)
-    })
+    var result1 = result(arr, searchArr)
 
-    function result(arr, searchArr) {
-        var num = 0
-        var numArr = []
-        var text = []
+    // result1.forEach(i => {
+    //   ul.cildren[i].style.background = 'green'
+    // })
+    const li = document.querySelector('li')
+    li[0].style.backgroundColor = 'green'
+    console.log(li[0])
+  }
 
-        arr.forEach((i, x) => {
-          searchArr.forEach(k => {
-            if(i.indexOf(k) != -1) {
-              num ++
-              
-            }
-            numArr.push(num)
-            num = 0
-          })
-
-          // if (num == searchArr.length) {
-          //   text.push(i)
-          // }
-        })
-        return numArr
-      }
-
-    function search() {
-      var arr = []
-
-      for (let i = 0; i < ul.children.length; i++) {
-        arr.push(ul.children[i].innerText)
-        
-      }
-
-      var searchArr = inputSearch.value.split('')
-      
-      var result1 = result(arr, searchArr)
-
-      console.log(result1)
-
-    }
-
-    btn[4].addEventListener('click', () => {
-      search()
-    })
-
-
-  </script>
-</body>
-
+  btn[4].addEventListener('click', () => {
+    search()
+  })
+</script>
 
 </html>
