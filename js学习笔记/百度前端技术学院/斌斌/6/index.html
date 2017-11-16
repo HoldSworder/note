@@ -67,6 +67,28 @@
       ul.removeChild(e.target)
     })
 
+    function result(arr, searchArr) {
+        var num = 0
+        var numArr = []
+        var text = []
+
+        arr.forEach((i, x) => {
+          searchArr.forEach(k => {
+            if(i.indexOf(k) != -1) {
+              num ++
+              
+            }
+            numArr.push(num)
+            num = 0
+          })
+
+          // if (num == searchArr.length) {
+          //   text.push(i)
+          // }
+        })
+        return numArr
+      }
+
     function search() {
       var arr = []
 
@@ -76,22 +98,10 @@
       }
 
       var searchArr = inputSearch.value.split('')
-      var num = 0
       
-      function result() {
-        arr.forEach(i => {
-          searchArr.forEach(k => {
-            if(i.indexOf(k) != -1) {
-              num ++
-            }
-          })
-          if (num == searchArr.length) {
-            return i
-          }
-        })
-      }
+      var result1 = result(arr, searchArr)
 
-      console.log(result())
+      console.log(result1)
 
     }
 
