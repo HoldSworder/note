@@ -13,6 +13,9 @@
       margin: 5px;
       padding: 5px
     }
+    .choose {
+      background-color: green;
+    }
   </style>
 </head>
 
@@ -101,12 +104,14 @@
 
     var result1 = result(arr, searchArr)
 
-    // result1.forEach(i => {
-    //   ul.cildren[i].style.background = 'green'
-    // })
-    const li = document.querySelector('li')
-    li[0].style.backgroundColor = 'green'
-    console.log(li[0])
+    result1.forEach(i => {
+      ul.children[i].className = 'choose'
+    })
+
+    // const li = document.querySelector('li')
+    // ul.childeren[0][style][backgroundColor] = '#ccc'
+
+    console.log(ul.children[0])
   }
 
   btn[4].addEventListener('click', () => {
