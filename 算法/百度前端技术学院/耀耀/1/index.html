@@ -17,7 +17,23 @@
     <span>名称</span>
     <input type="text" name="" value="">
     <button type="">验证</button>
-    <p>必填,长度为4~16个字符</p>
+    <p></p>
   </div>
 </body>
+
+<script>
+  var input = document.querySelector('input')
+  var button = document.querySelector('button')
+  var text = document.querySelector('p')
+  
+  function filter() {
+    if(input.value.length <= 4 || input.value.length >= 16) {
+      text.innerHTML = '长度必须为4~16'
+    }
+  }
+
+  button.addEventListener('click', () => {
+    filter()
+  })
+</script>
 </html>
