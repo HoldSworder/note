@@ -8,7 +8,7 @@
   <title>Document</title>
   <style>
     p {
-      margin-left: 40px;
+      margin-left: 100px;
       font-size: 12px;
     }
     span{
@@ -17,18 +17,23 @@
       width: 70px;
       display: inline-block;
     }
+    input{
+      outline: none;
+      -webkit-appearance: button;
+      border-radius: 5px;
+    }
   </style>
 </head>
 
 <body>
   <div>
     <div>
-      <span>名  称</span>
+      <span>名称</span>
       <input type="text">
       <p></p>
     </div>
     <div>
-      <span>密  码</span>
+      <span>密码</span>
       <input type="text">
       <p></p>
     </div>
@@ -38,12 +43,12 @@
       <p></p>
     </div>
     <div>
-      <span>邮  箱</span>
+      <span>邮箱</span>
       <input type="text">
       <p></p>
     </div>
     <div>
-      <span>手  机</span>
+      <span>手机</span>
       <input type="text">
       <p></p>
     </div>
@@ -55,20 +60,25 @@
   var input = document.querySelectorAll('input')
   var button = document.querySelector('button')
   var text = document.querySelector('p')
+  var div = document.querySelectorAll('div')
 
   function filter() {
-    console.log(input)
-    if (input.value.length == 0) {
-      text.innerHTML = '姓名不能为空'
-      input.style.borderColor = 'red'
-      text.style.color = 'red'
-      return
+
+    var p = this.nextElementSibling
+    var id = this.previousElementSibling.innerText
+
+    if (this.value.length == 0) {
+      p.innerHTML = `必填，长度为4~16个字符`
+      this.style.borderColor = 'red'
+      p.style.color = 'red'
+      p.style.outline = 'red'
     }
 
-    var arr = input.value.split('')
+    var arr = this.value.split('')
     var num = 0
     var mis = /\W/
     var cn = /[^\x00-\xff]/
+    var all = /\w/
 
     arr.forEach(i => {
       if (cn.test(i)) {
@@ -78,19 +88,86 @@
       }
     })
 
-    if (num < 4 || num > 16) {
-      text.innerHTML = '长度必须为4~16'
-      input.style.borderColor = '#999'
-      text.style.color = '#999'
-    } else {
-      text.innerHTML = '名称格式正确'
-      input.style.borderColor = 'green'
-      text.style.color = 'green'
+    function getText(bool, id) {
+      if(bool == true) {
+        p.innerHTML = `${id}格式正确`
+        this.style.borderColor = 'green'
+        p.style.color = 'green'
+      }else {
+        p.innerHTML = `${id}格式错误`
+        this.style.borderColor = '#999'
+        p.style.color = '#999'
+      }
+    }
+    
+    var setText = getText.bind(this)
+
+    if(id == '名称') {
+      if (num < 4 || num > 16) {
+        p.innerHTML = '长度必须为4~16'
+        this.style.borderColor = '#999'
+        p.style.color = '#999'
+      }else {
+        setText(true, id)
+      } 
+    }else if(id == '密码') {
+      if(/\w/.test(this.value)) {
+        setText(true, id)
+      }else {
+        setText(false, id)
+      }
+    }else if(id == '密码确认') {
+      if(this.value == input[1].value) {
+        setText(true, id)
+      }else {
+        setText(false, id)
+      }
+    }else if(id == '邮箱') {
+      if(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(this.value)) {
+        setText(true, id)
+      }else {
+        setText(false, id)
+      }
+    }else {
+      if(/^(13[0-9]|14[0-9]|15[0-9]|166|17[0-9]|18[0-9]|19[8|9])\d{8}$/.test(this.value)) {
+        setText(true, id)
+      }else {
+        setText(false, id)
+      }
+    }
+    
+  }
+
+  function test() {
+    var num = 0
+
+    input.forEach(i => {
+      if (i.style.borderColor == 'green') {
+        num += 1
+      } 
+    })
+    
+    if(num == input.length) {
+      alert('ok')
+    }else {
+      alert('no')
     }
   }
 
+  input.forEach((i, k, j) => {
+    i.addEventListener('focus', () => {
+      filter.bind(i)()
+    })
+    i.addEventListener('change', () => {
+      filter.bind(i)()
+    })
+    i.addEventListener('focusout', () => {
+      filter.bind(i)()
+    })
+  })
+
   button.addEventListener('click', () => {
-    filter()
+    test()
   })
 </script>
 
