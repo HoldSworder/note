@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .display{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    <form>
+        <input type="radio" name='student' id="1" checked>
+        <label for="1">在校生</label>
+        <input type="radio" name='student' id="2">
+        <label for="2">非在校生</label>
+        <div>
+          <span>学校</span>
+          <select>
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="南京">南京</option>
+          </select>
+          <select>
+            <option value="北京大学">北京大学</option>
+            <option value="清华大学">清华大学</option>
+            <option value="人民大学">中国人民大学</option>
+          </select>
+        </div>
+        <div class="display">
+          <span>就业单位</span>
+          <input type="text" name="" value="">
+        </div>
+    </form>
+    <button type="">123</button>
+</body>
+
+<script>
+  var radio = document.querySelectorAll('input[name="student"]')
+  var button = document.querySelector('button')
+  var select = document.querySelectorAll('select')
+  var div = document.querySelectorAll('div')
+
+  radio[0].addEventListener('change', () => {
+    div[0].style.display = 'none'
+    div[1].style.display = 'block'
+  })
+
+  radio[1].addEventListener('change', () => {
+    div[1].style.display = 'none'
+    div[0].style.display = 'block'
+  })
+
+  select[0].addEventListener('change', () => {
+    change(select[0].value)
+  })
+
+  function change(from) {
+    select[1].options.length = 0
+    switch (from) {
+      case "北京":
+        select[1].add(new Option("北京大学"));
+        select[1].add(new Option("清华大学"));
+        select[1].add(new Option("中国人民大学"));
+        break;
+      case "上海":
+        select[1].add(new Option("复旦大学"));
+        select[1].add(new Option("上海交通大学"));
+        select[1].add(new Option("同济大学"));
+        break;
+      case "南京":
+        select[1].add(new Option("南京大学"));
+        select[1].add(new Option("东南大学"));
+        select[1].add(new Option("中国药科大学"));
+        break;
+    }
+  }
+
+  button.addEventListener('click', () => {
+    console.log(radio[1].checked)
+  })
+
+</script>
+</html>
