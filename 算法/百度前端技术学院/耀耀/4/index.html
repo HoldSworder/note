@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #table{
+      margin: 0 auto;
+      border: solid 3px black;
+      border-collapse: collapse;
+    }
+    #head{
+      border: none;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    #head td,#left td{
+      height: 40px;
+      width: 40px;
+    }
+    #left{
+      position: absolute;
+      margin-left: calc(50% - 260px);
+      border-collapse: collapse;
+    }
+    #table td{
+      border: solid 1px #676767;
+      height: 40px;
+      width: 40px;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <table id="head">
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+      </tr>
+    </table>
+    <table id="left">
+      <tr>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>10</td>
+      </tr>
+    </table>
+    <table id='table'>
+    </table>
+  </div>
+
+  <script>
+    var table = document.querySelector('#table')
+
+    function init() {
+      
+      for(let i = 0; i < 10; i++) {
+        var arr = []
+        for(let k = 0; k < 10; k++) {
+          arr.push(`<td></td>`)
+        }
+        table.innerHTML += `<tr>${arr.join(' ')}</tr>` 
+      }
+    }
+
+    var block = {
+      width: 40,
+      index: 1,
+      direction() {
+        switch (this.index) {
+          case 1:
+            this.style.transform = `rotate(none)`
+            break;
+          case 2:
+            this.style.transform = `rotate(90deg)`
+            break;
+          case 3:
+            this.style.transform = `rotate(180deg)`
+            break;
+          case 4:
+            this.style.transform = `rotate(270deg)`
+            break;
+        }
+      },
+      go() {
+        switch (this.index) {
+          case 1:
+            this.style.top -= this.width
+            break;
+          case 2:
+            this.style.left += this.width
+            break;
+          case 3:
+            this.style.top += this.width
+            break;
+          case 4:
+            this.style.left -= this.width
+            break;
+        }
+      },
+      left() {
+        if(this.index == 1) {
+          this.index = 4
+          this.direction()
+        }else {
+          this.index--
+          this.direction()
+        }
+      },
+      right() {
+        if(this.index == 4) {
+          this.index = 1
+          this.direction()
+        }else {
+          this.index++
+          this.direction()
+        }
+      },
+      back() {
+        if(this.index > 2) {
+          this.index - 2
+        }else {
+          this.inde + 2
+        }
+      }
+    }
+
+    init()
+  </script>
+</body>
+</html>
