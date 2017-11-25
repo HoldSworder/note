@@ -10,6 +10,7 @@
       margin: 0 auto;
       border: solid 3px black;
       border-collapse: collapse;
+      position: relative;
     }
     #head{
       border: none;
@@ -31,6 +32,14 @@
       width: 40px;
       padding: 0;
     }
+    img{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 40px;
+      height: 40px;
+    }
+    
   </style>
 </head>
 <body>
@@ -83,21 +92,17 @@
     </table>
     <table id='table'>
     </table>
+    <div>
+      <button>go</button>
+      <button>tun lef</button>
+      <button>tun rig</button>
+      <button>tun bac</button>
+    </div>
+    
   </div>
 
   <script>
     var table = document.querySelector('#table')
-
-    function init() {
-      
-      for(let i = 0; i < 10; i++) {
-        var arr = []
-        for(let k = 0; k < 10; k++) {
-          arr.push(`<td></td>`)
-        }
-        table.innerHTML += `<tr>${arr.join(' ')}</tr>` 
-      }
-    }
 
     var block = {
       width: 40,
@@ -158,8 +163,32 @@
         }else {
           this.inde + 2
         }
+      },
+      witty() {
+        if (this.style.top < 0 || this.style.left < 0 || this.style.right < 0 || this.style.bottom < 0) {
+          alert('no')
+        }
       }
     }
+
+    function init() {
+
+      for (let i = 0; i < 10; i++) {
+        var arr = []
+        for (let k = 0; k < 10; k++) {
+          arr.push(`<td></td>`)
+        }
+        table.innerHTML += `<tr>${arr.join(' ')}</tr>`
+      }
+
+      table.innerHTML += `<img src='./box.png'></img>`
+
+      var img = document.querySelector('img')
+      block.bind(img)()
+    }    
+
+    
+
 
     init()
   </script>
