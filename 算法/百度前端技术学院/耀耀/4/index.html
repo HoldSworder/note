@@ -104,10 +104,10 @@
   <script>
     var table = document.querySelector('#table')
 
-    var block = {
-      width: 40,
-      index: 1,
-      direction() {
+    function block() {
+      this.width = 40;
+      this.index = 1;
+      this.direction = function() {
         switch (this.index) {
           case 1:
             this.style.transform = `rotate(none)`
@@ -122,8 +122,8 @@
             this.style.transform = `rotate(270deg)`
             break;
         }
-      },
-      go() {
+      };
+      this.go = function() {
         switch (this.index) {
           case 1:
             this.style.top -= this.width
@@ -138,8 +138,8 @@
             this.style.left -= this.width
             break;
         }
-      },
-      left() {
+      };
+      this.left = () => {
         if(this.index == 1) {
           this.index = 4
           this.direction()
@@ -147,8 +147,8 @@
           this.index--
           this.direction()
         }
-      },
-      right() {
+      };
+      this.right = () => {
         if(this.index == 4) {
           this.index = 1
           this.direction()
@@ -156,15 +156,15 @@
           this.index++
           this.direction()
         }
-      },
-      back() {
+      };
+      this.back = () => {
         if(this.index > 2) {
           this.index - 2
         }else {
           this.inde + 2
         }
-      },
-      witty() {
+      };
+      this.witty = () => {
         if (this.style.top < 0 || this.style.left < 0 || this.style.right < 0 || this.style.bottom < 0) {
           alert('no')
         }
@@ -184,7 +184,15 @@
       table.innerHTML += `<img src='./box.png'></img>`
 
       var img = document.querySelector('img')
-      block.bind(img)()
+      img.prototype = new block()
+
+      console.log(img.go().bing(img)())
+
+      var button = document.querySelectorAll('button')
+
+      button[0].addEventListener('click', () => {
+        img.go()
+      })
     }    
 
     
