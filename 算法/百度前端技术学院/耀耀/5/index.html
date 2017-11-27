@@ -38,6 +38,7 @@
       width: 40px;
       height: 40px;
       margin: 1px;
+      transition: all 1s;
     }
     #btns{
       margin: 0 auto;
@@ -96,10 +97,8 @@
     <table id='table'>
     </table>
     <div id="btns">
-      <button>go</button>
-      <button>tun lef</button>
-      <button>tun rig</button>
-      <button>tun bac</button>
+      <input type="text" name="" value="">
+      <button type="">执行</button>
     </div>
     
   </div>
@@ -115,19 +114,20 @@
       this.id = obj;
       this.width = 41;
       this.index = 1;
+      this.transform = 0;
       this.direction = function() {
         switch (this.index) {
           case 1:
             this.id.style.transform = `none`
             break;
           case 2:
-            this.id.style.transform = `rotate(90deg)`
+            this.id.style.transform = `rotate(${this.transform + 90}deg)`
             break;
           case 3:
-            this.id.style.transform = `rotate(180deg)`
+            this.id.style.transform = `rotate(${this.transform + 180}deg)`
             break;
           case 4:
-            this.id.style.transform = `rotate(270deg)`
+            this.id.style.transform = `rotate(${this.transform + 0}deg)`
             break;
         }
       };
@@ -179,8 +179,8 @@
           this.direction()
         }
       };
-      this.witty = () => {
-        switch (this.index) {
+      this.witty = (index) => {
+        switch (index ? index : this.index) {
           case 1:
             if (setDom(this.id.style.top) <= 0) {
               return false
@@ -227,23 +227,40 @@
 
       var img = document.querySelector('img')
       var obj = new block(img)
-      var button = document.querySelectorAll('button')
+      var button = document.querySelector('button')
+      var input = document.querySelector('input')
 
-      button[0].addEventListener('click', () => {
-        if(obj.witty()) {
-          obj.go()
-        }else {
-          alert('no')
-        }        
-      })
-      button[1].addEventListener('click', () => {
-        obj.left()
-      })
-      button[2].addEventListener('click', () => {
-        obj.right()
-      })
-      button[3].addEventListener('click', () => {
-        obj.back()
+      // button[0].addEventListener('click', () => {
+      //   if(obj.witty()) {
+      //     obj.go()
+      //   }else {
+      //     alert('no')
+      //   }        
+      // })
+      
+      button.addEventListener('click', () => {
+        switch (input.value) {
+          case 'GO':
+            if (obj.witty()) {
+              obj.go()
+            } else {
+              alert('no')
+            } 
+            break;
+          case 'TUN LEF':
+            obj.left()
+            break;
+          case 'TUN RIG':
+            obj.right()
+            break;
+          case 'TUN BAC':
+            obj.back()
+            break;
+          case 'TRA LEF':
+            obj.back()
+            break;
+        
+        }
       })
     }    
 

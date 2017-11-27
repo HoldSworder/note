@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  #container{
+    border: 1px solid #666;
+    width: 18.75rem /* 300/16 */;
+    height: 9.375rem /* 150/16 */;
+    z-index: 10;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    background: #666;
+  }
+  h5{
+    padding: 10px 0;
+    margin: 0;
+    background: #999;
+    text-align: center;
+    color: white;
+  }
+  p{
+    margin: 30px;
+    color: white;
+  }
+  #btns{
+    bottom: 0;
+    float: right;
+    margin-right: 10px;
+  }
+  #mask{
+    height: 100vh;
+    background: #333;
+    z-index: 2;
+  }
+  body{
+    margin: 0;
+  }
+  #control{
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
+  </style>
+</head>
+<body>
+  <button id="control">
+    弹出
+  </button>
+  <div id="container">
+    <h5>弹出框</h5>
+    <div>
+      <p>这是一个弹出框</p>
+      <div id="btns">
+        <button>确定</button>
+        <button>取消</button>
+      </div>      
+    </div>
+  </div>
+  <div id='mask'></div>
+</body>
+<script>
+  var btn = document.querySelectorAll('button')
+  var pop = document.querySelector('#container')
+  var mask = document.querySelector('#mask')
+
+  btn[0].addEventListener('click', () => {
+    pop.style.display = 'block'
+    mask.style.display = 'block'
+  })
+
+  function hidden(params) {
+    params.addEventListener('click', () => {
+      pop.style.display = 'none'
+      mask.style.display = 'none'
+    })
+  }
+
+  hidden(btn[1])
+  hidden(btn[2])
+  hidden(mask)
+
+  pop.addEventListener('mousedown')
+
+  var body = document.querySelector('body')
+  body.addEventListener('click', (e) => {
+    var x = e.clientX
+    var y = e.clientY
+    console.log(`${x} - ${y}`)
+  })
+
+</script>
+</html>
