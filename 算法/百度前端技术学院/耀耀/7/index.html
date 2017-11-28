@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  td , th{
+    border: 1px solid #666;
+    padding: 10px 15px;
+  }
+  table{
+    border-collapse: collapse;
+  }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>语文</th>
+        <th>数学</th>
+        <th>英语</th>
+        <th>总分</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>小明</td>
+        <td>90</td>
+        <td>80</td>
+        <td>70</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>小红</td>
+        <td>60</td>
+        <td>70</td>
+        <td>80</td>
+        <td></td>
+      </tr>
+    </tbody>           
+  </table>
+  姓名<input type="text"><br>
+  语文<input type="text"><br>
+  数学<input type="text"><br>
+  英语<input type="text"><br>
+  <button type="">添加</button>
+</body>
+<script>
+  var tr = document.querySelectorAll('tr')
+  var sum = document.querySelectorAll('tbody>tr>td:last-child')
+  var button = document.querySelector('button')
+  var input = document.querySelectorAll('input')
+  var table = document.querySelector('table')
+  var tbody = document.querySelector('tbody')
+  var trNum = document.querySelectorAll('tbody>tr')
+  // var index = document.querySelectorAll('thead>tr>th')
+  var text = ''
+
+  console.log(tr[0].children[2])
+  
+
+  function sumTest() {
+    let num = 0
+    let arr = []
+    tr.forEach((i,k) => {
+      if(k == 0) {}
+      else {for (let j = 0; j < 3; j++) {
+          num += Number(i.children[j + 1].innerText)
+        }
+        arr.push(num)
+        num = 0  
+      }
+    })
+    return arr
+  }
+
+  function sumNum() {
+    sum.forEach((i, k) => {
+      i.innerText = sumTest()[k]
+    })
+  }
+  
+  button.addEventListener('click', () => {
+      input.forEach((i, k) => {
+        text += `<td>${i.value}</td>`
+      })
+      tbody.innerHTML += (`<tr>${text}<td></td></tr>`)
+      text = ''
+      tr = document.querySelectorAll('tr')
+      sum = document.querySelectorAll('tbody>tr>td:last-child')
+      sumNum()
+      console.log(sum)
+    })
+
+    function sort(node) {
+      let index = node.cellIndex
+      let arr = []
+      node.addEventListener('click', () => {
+        for(let i = 0; i < trNum.length; i++) {
+          arr.push({num: trNum.children[index].innerText, index: i})
+        }
+        // arr.num.sort((a, b) => {return a - b})
+        console.log(arr)
+      })
+    }
+
+  for(let i = 0; i < 3; i++) {
+    tr[0].children[i + 1].addEventListener('click', () => {
+      sort(tr[0].children[i + 1])
+    })
+  }
+
+  sumNum()
+  
+  console.log(sumTest())
+
+</script>
+</html>

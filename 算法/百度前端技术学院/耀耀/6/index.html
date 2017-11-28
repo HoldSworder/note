@@ -36,6 +36,7 @@
     height: 100vh;
     background: #333;
     z-index: 2;
+    opacity: 0.5;
   }
   body{
     margin: 0;
@@ -78,6 +79,8 @@
     params.addEventListener('click', () => {
       pop.style.display = 'none'
       mask.style.display = 'none'
+      pop.style.left = '40%'
+      pop.style.top = '40%'
     })
   }
 
@@ -85,13 +88,31 @@
   hidden(btn[2])
   hidden(mask)
 
-  pop.addEventListener('mousedown')
+  var poper = {
+    x : 0,
+    y : 0,
+    flag : false,
+    mouseX: 0,
+    mouseY: 0,
+  }
 
-  var body = document.querySelector('body')
-  body.addEventListener('click', (e) => {
-    var x = e.clientX
-    var y = e.clientY
-    console.log(`${x} - ${y}`)
+  pop.addEventListener('mousedown', (e) => {
+    poper.flag = true
+    poper.x = pop.offsetLeft
+    poper.y = pop.offsetTop
+    poper.mouseX = e.clientX
+    poper.mouseY = e.clientY
+  })
+
+  pop.addEventListener('mousemove', (e) => {
+    if(poper.flag == true){
+      pop.style.left = poper.x - (poper.mouseX - e.clientX) + 'px'
+      pop.style.top = poper.y - (poper.mouseY - e.clientY) + 'px'
+    }    
+  })
+
+  pop.addEventListener('mouseup', (e) => {
+    poper.flag = false
   })
 
 </script>
