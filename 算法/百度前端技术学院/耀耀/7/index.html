@@ -60,7 +60,7 @@
   // var index = document.querySelectorAll('thead>tr>th')
   var text = ''
 
-  console.log(tr[0].children[2])
+  console.log(trNum[1])
   
 
   function sumTest() {
@@ -99,9 +99,10 @@
     function sort(node) {
       let index = node.cellIndex
       let arr = []
-      node.addEventListener('click', () => {
+      node.addEventListener('click', (e) => {
+        e.stopPropagation();
         for(let i = 0; i < trNum.length; i++) {
-          arr.push({num: trNum.children[index].innerText, index: i})
+          arr.push({num: trNum[i].children[index].innerText, index: i})
         }
         // arr.num.sort((a, b) => {return a - b})
         console.log(arr)
