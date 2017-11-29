@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
@@ -30,6 +30,7 @@
       height: 40px;
       width: 40px;
       padding: 0;
+      
     }
     img{
       position: absolute;
@@ -42,6 +43,10 @@
     #btns{
       margin: 0 auto;
       display: table;
+    }
+    .tableBox{
+      width: 410px;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -93,8 +98,10 @@
         <td>10</td>
       </tr>
     </table>
-    <table id='table'>
-    </table>
+    <div class="tableBox">
+      <table id='table'>
+      </table>
+    </div>
     <div id="btns">
       <button>走</button>
       <button>左转</button>

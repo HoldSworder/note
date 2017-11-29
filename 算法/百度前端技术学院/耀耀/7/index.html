@@ -20,9 +20,9 @@
     <thead>
       <tr>
         <th>姓名</th>
-        <th>语文</th>
-        <th>数学</th>
-        <th>英语</th>
+        <th><span>语文</span></th>
+        <th><span>数学</span></th>
+        <th><span>英语</span></th>
         <th>总分</th>
       </tr>
     </thead>
@@ -58,10 +58,18 @@
   var tbody = document.querySelector('tbody')
   var trNum = document.querySelectorAll('tbody>tr')
   // var index = document.querySelectorAll('thead>tr>th')
+  var span = document.querySelectorAll('span')
   var text = ''
 
   console.log(trNum[1])
   
+  function compare(property) {
+      return function (a, b) {
+        var value1 = a[property];
+        var value2 = b[property];
+        return value1 - value2;
+      }
+    }
 
   function sumTest() {
     let num = 0
@@ -96,28 +104,40 @@
       console.log(sum)
     })
 
-    function sort(node) {
+    function click(node, btn) {
       let index = node.cellIndex
+      let html = ''
       let arr = []
-      node.addEventListener('click', (e) => {
-        e.stopPropagation();
-        for(let i = 0; i < trNum.length; i++) {
-          arr.push({num: trNum[i].children[index].innerText, index: i})
-        }
-        // arr.num.sort((a, b) => {return a - b})
-        console.log(arr)
-      })
+      trNum = document.querySelectorAll('tbody>tr')
+      html = ''
+      for (let i = 0; i < trNum.length; i++) {
+        arr.push({ num: trNum[i].children[index].innerText, index: i })
+      }
+      arr.sort(compare('num'))
+      console.log(html)    
+      for (let i = 0; i < arr.length; i++) {
+        html += `<tr>${trNum[arr[i].index].innerHTML}</tr>`
+      }
+      tbody.innerHTML = html
+      btn.removeEventListener('click', click())      
+    }
+
+    function sort(node, btn) {
+      let arr = []
+      btn.addEventListener('click', click(node, btn))
     }
 
   for(let i = 0; i < 3; i++) {
     tr[0].children[i + 1].addEventListener('click', () => {
-      sort(tr[0].children[i + 1])
+      sort(tr[0].children[i + 1], span[i])
     })
   }
 
+  
+
   sumNum()
   
-  console.log(sumTest())
+  console.log(tr[0].children[1 + 1])
 
 </script>
 </html>
