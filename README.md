@@ -4,7 +4,7 @@
 vue.js vue-cli vue-router axios vuex webpack
 
 目前学习顺序</br>
-    `js` => `node.js` => `webpack` => `vue.js` => `python`
+    `js` => `node.js` => `webpack` => `vue.js` => `weex`
 -----
 
     stylus css预处理器
