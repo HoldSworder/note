@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #table{
+      margin: 0 auto;
+      border-collapse: collapse;
+      position: relative;
+    }
+    #head{
+      border: none;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    #head td,#left td{
+      height: 40px;
+      width: 40px;
+    }
+    #left{
+      position: absolute;
+      margin-left: calc(50% - 260px);
+      border-collapse: collapse;
+    }
+    #table td{
+      border: solid 1px #676767;
+      height: 40px;
+      width: 40px;
+      padding: 0;
+      
+    }
+    img{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 40px;
+      height: 40px;
+      margin: 1px;
+    }
+    #btns{
+      margin: 0 auto;
+      display: table;
+    }
+    .tableBox{
+      width: 410px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <table id="head">
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+      </tr>
+    </table>
+    <table id="left">
+      <tr>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>10</td>
+      </tr>
+    </table>
+    <div class="tableBox">
+      <table id='table'>
+      </table>
+    </div>
+    <div id="btns">
+      <button>走</button>
+      <button>左转</button>
+      <button>右转</button>
+      <button>回头</button>
+    </div>
+    
+  </div>
+
+  <script>
+    var table = document.querySelector('#table')
+
+    function setDom(dom) {
+      return Number(dom.replace('px', ''))
+    }
+
+    function block(obj) {
+      this.id = obj;
+      this.width = 41;
+      this.index = 1;
+      this.direction = function() {
+        switch (this.index) {
+          case 1:
+            this.id.style.transform = `none`
+            break;
+          case 2:
+            this.id.style.transform = `rotate(90deg)`
+            break;
+          case 3:
+            this.id.style.transform = `rotate(180deg)`
+            break;
+          case 4:
+            this.id.style.transform = `rotate(270deg)`
+            break;
+        }
+      };
+      this.go = () => {
+        let num
+        switch (this.index) {
+          case 1:           
+            num = setDom(this.id.style.top)
+            this.id.style.top = `${num -= this.width}px`
+            break;
+          case 2:
+            num = setDom(this.id.style.left)
+            this.id.style.left = `${num += this.width}px`
+            break;
+          case 3:
+            num = setDom(this.id.style.top)
+            this.id.style.top = `${num += this.width}px`
+            break;
+          case 4:
+            num = setDom(this.id.style.left)
+            this.id.style.left = `${num -= this.width}px`
+            break;
+        }
+      };
+      this.left = function() {
+        if(this.index == 1) {
+          this.index = 4
+          this.direction()
+        }else {
+          this.index--
+          this.direction()
+        }
+      };
+      this.right = () => {
+        if(this.index == 4) {
+          this.index = 1
+          this.direction()
+        }else {
+          this.index++
+          this.direction()
+        }
+      };
+      this.back = () => {
+        if(this.index > 2) {
+          this.index -= 2
+          this.direction()
+        }else {
+          this.index += 2
+          this.direction()
+        }
+      };
+      this.witty = () => {
+        switch (this.index) {
+          case 1:
+            if (setDom(this.id.style.top) <= 0) {
+              return false
+            }else{
+              return true
+            }
+            break;
+          case 2:
+            if (setDom(this.id.style.left) >= this.width*9) {
+              return false
+            }else{
+              return true
+            }
+            break;
+          case 3:
+            if (setDom(this.id.style.top) >= this.width*9) {
+              return false
+            }else{
+              return true
+            }
+            break;
+          case 4:
+            if (setDom(this.id.style.left) <= 0) {
+              return false
+            }else{
+              return true
+            }
+            break;
+        }
+      }
+    }
+
+    function init() {
+
+      for (let i = 0; i < 10; i++) {
+        var arr = []
+        for (let k = 0; k < 10; k++) {
+          arr.push(`<td></td>`)
+        }
+        table.innerHTML += `<tr>${arr.join(' ')}</tr>`
+      }
+
+      table.innerHTML += `<img src='./box.png'></img>`
+
+      var img = document.querySelector('img')
+      var obj = new block(img)
+      var button = document.querySelectorAll('button')
+
+      button[0].addEventListener('click', () => {
+        if(obj.witty()) {
+          obj.go()
+        }else {
+          alert('到头了 你个弱智')
+        }        
+      })
+      button[1].addEventListener('click', () => {
+        obj.left()
+      })
+      button[2].addEventListener('click', () => {
+        obj.right()
+      })
+      button[3].addEventListener('click', () => {
+        obj.back()
+      })
+    }    
+
+    init()
+  </script>
+</body>
+</html>

@@ -8,7 +8,6 @@
   <style>
     #table{
       margin: 0 auto;
-      border: solid 3px black;
       border-collapse: collapse;
       position: relative;
     }
@@ -38,8 +37,13 @@
       left: 0px;
       width: 40px;
       height: 40px;
+      margin: 1px;
+      transition: all 1s;
     }
-    
+    #btns{
+      margin: 0 auto;
+      display: table;
+    }
   </style>
 </head>
 <body>
@@ -92,11 +96,9 @@
     </table>
     <table id='table'>
     </table>
-    <div>
-      <button>go</button>
-      <button>tun lef</button>
-      <button>tun rig</button>
-      <button>tun bac</button>
+    <div id="btns">
+      <input type="text" name="" value="">
+      <button type="">执行</button>
     </div>
     
   </div>
@@ -104,42 +106,53 @@
   <script>
     var table = document.querySelector('#table')
 
-    function block() {
-      this.width = 40;
+    function setDom(dom) {
+      return Number(dom.replace('px', ''))
+    }
+
+    function block(obj) {
+      this.id = obj;
+      this.width = 41;
       this.index = 1;
+      this.transform = 0;
       this.direction = function() {
         switch (this.index) {
           case 1:
-            this.style.transform = `rotate(none)`
+            this.id.style.transform = `none`
             break;
           case 2:
-            this.style.transform = `rotate(90deg)`
+            this.id.style.transform = `rotate(${this.transform + 90}deg)`
             break;
           case 3:
-            this.style.transform = `rotate(180deg)`
+            this.id.style.transform = `rotate(${this.transform + 180}deg)`
             break;
           case 4:
-            this.style.transform = `rotate(270deg)`
+            this.id.style.transform = `rotate(${this.transform + 0}deg)`
             break;
         }
       };
-      this.go = function() {
+      this.go = () => {
+        let num
         switch (this.index) {
-          case 1:
-            this.style.top -= this.width
+          case 1:           
+            num = setDom(this.id.style.top)
+            this.id.style.top = `${num -= this.width}px`
             break;
           case 2:
-            this.style.left += this.width
+            num = setDom(this.id.style.left)
+            this.id.style.left = `${num += this.width}px`
             break;
           case 3:
-            this.style.top += this.width
+            num = setDom(this.id.style.top)
+            this.id.style.top = `${num += this.width}px`
             break;
           case 4:
-            this.style.left -= this.width
+            num = setDom(this.id.style.left)
+            this.id.style.left = `${num -= this.width}px`
             break;
         }
       };
-      this.left = () => {
+      this.left = function() {
         if(this.index == 1) {
           this.index = 4
           this.direction()
@@ -159,14 +172,43 @@
       };
       this.back = () => {
         if(this.index > 2) {
-          this.index - 2
+          this.index -= 2
+          this.direction()
         }else {
-          this.inde + 2
+          this.index += 2
+          this.direction()
         }
       };
-      this.witty = () => {
-        if (this.style.top < 0 || this.style.left < 0 || this.style.right < 0 || this.style.bottom < 0) {
-          alert('no')
+      this.witty = (index) => {
+        switch (index ? index : this.index) {
+          case 1:
+            if (setDom(this.id.style.top) <= 0) {
+              return false
+            }else{
+              return true
+            }
+            break;
+          case 2:
+            if (setDom(this.id.style.left) >= this.width*9) {
+              return false
+            }else{
+              return true
+            }
+            break;
+          case 3:
+            if (setDom(this.id.style.top) >= this.width*9) {
+              return false
+            }else{
+              return true
+            }
+            break;
+          case 4:
+            if (setDom(this.id.style.left) <= 0) {
+              return false
+            }else{
+              return true
+            }
+            break;
         }
       }
     }
@@ -184,19 +226,43 @@
       table.innerHTML += `<img src='./box.png'></img>`
 
       var img = document.querySelector('img')
-      img.prototype = new block()
+      var obj = new block(img)
+      var button = document.querySelector('button')
+      var input = document.querySelector('input')
 
-      console.log(img.go().bing(img)())
-
-      var button = document.querySelectorAll('button')
-
-      button[0].addEventListener('click', () => {
-        img.go()
+      // button[0].addEventListener('click', () => {
+      //   if(obj.witty()) {
+      //     obj.go()
+      //   }else {
+      //     alert('no')
+      //   }        
+      // })
+      
+      button.addEventListener('click', () => {
+        switch (input.value) {
+          case 'GO':
+            if (obj.witty()) {
+              obj.go()
+            } else {
+              alert('no')
+            } 
+            break;
+          case 'TUN LEF':
+            obj.left()
+            break;
+          case 'TUN RIG':
+            obj.right()
+            break;
+          case 'TUN BAC':
+            obj.back()
+            break;
+          case 'TRA LEF':
+            obj.back()
+            break;
+        
+        }
       })
     }    
-
-    
-
 
     init()
   </script>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body{
+      background-color: black;
+    }
+  #container{
+    width: 450px;
+    height: 250px;
+    background-image: url(./1.jpg);
+    background-size: cover;
+    margin: 30vh auto;
+    position: relative;
+    transition: background 5s;
+  }
+
+  #container:after{
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+				filter: blur(5px);
+				opacity: 0;
+				background: url(./1.jpg);
+        background-size: cover;
+				-webkit-filter: blur(5px); 
+				-webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+			}
+
+  #container:hover:after{
+    opacity: 1;
+  }
+  #container:hover #text{
+    z-index: 2;
+  }
+  #text{
+    width: 250px;
+    height: 150px;
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 22%;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+
+  /* 白框设置 */
+  #text:before{
+    border-top: 3px solid ghostwhite;
+    border-bottom: 3px solid ghostwhite;
+    transform: scale(0,1);
+  }
+  #text:after{
+    border-left: 3px solid ghostwhite;
+    border-right: 3px solid ghostwhite;
+    transform: scale(1,0);
+  }
+  #text::after, #text::before{
+    position: absolute;
+    /* 绝对定位边框 */
+    content: '';
+    /* 这个属性很关键啊 有他才会有before after属性 */
+    bottom: 10px;
+    left: -15px;
+    right: -15px;
+    top: 20px;
+    /* 设置白框大小 */  
+    transition: opacity 1s, transform 1s;
+  }
+  #container:hover #text:before{
+    transform: scale(1,1);
+  }
+  #container:hover #text:after{
+    transform: scale(1,1);
+  }
+
+  #container:hover #text{
+    opacity: 1;
+  }
+
+  h3{
+    margin-top: 3rem /* 20/16 */;
+  }
+  h3, p{
+    background-image: -webkit-linear-gradient(left, CornflowerBlue, tomato 25%, CornflowerBlue 50%, tomato 75%, CornflowerBlue 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: streamer 5s infinite linear;
+  }
+  @keyframes streamer {
+    0%  {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id='text'>
+      <h3>欢迎参加百度前端技术学院</h3>
+      <p>点击报名</p>
+    </div>
+  </div>
+</body>
+</html>
