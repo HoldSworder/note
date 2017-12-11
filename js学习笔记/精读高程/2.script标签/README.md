@@ -1,3 +1,8 @@
+标准模式
+-----------
+开启方式
+<!DOCTYPE html>
+
 noscript元素
 -------------
 <noscript>本页面需要浏览器支持（启用）Javascript</noscript>
