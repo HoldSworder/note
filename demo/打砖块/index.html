@@ -2,32 +2,168 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-  canvas {
-    border: 1px solid black;
-  }
-  </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
 </head>
 
 <body>
-  <canvas width="400" height="300"></canvas>
+	<canvas width="400" height="300"></canvas>
 </body>
 <script>
-  var log = console.log.bind(console)
-  var canvas = document.querySelector('canvas')
-  var context = canvas.getContext('2d')
+	var log = console.log.bind(console)
 
-  var img = new Image()
-  img.src = '1.png'
-  img.onload = function() {
-    context.drawImage(img, 150, 200)
-  }
+	var imageFromPath = function (path) {
+		var img = new Image()
+		img.src = path
+		return img
+	}
 
+	var Game = function () {
+		var g = {
+			keydowns: {},
+			actions: {},
+		}
+		var canvas = document.querySelector('canvas')
+		var context = canvas.getContext('2d')
 
+		g.canvas = canvas
+		g.context = context
+
+		g.drawImage = function(img) {
+			g.context.drawImage(img.image, img.x, img.y)
+		}
+
+		window.addEventListener('keydown', (e) => {
+			g.keydowns[e.key] = true
+		})
+
+		window.addEventListener('keyup', (e) => {
+			g.keydowns[e.key] = false
+		})
+
+		g.registerAction = function (key, callback) {
+			g.actions[key] = callback
+		}
+
+		setInterval(() => {
+			//events
+			var actions = Object.keys(g.actions)
+			for (let i = 0; i < actions.length; i++) {
+				const key = actions[i]
+				if (g.keydowns[key]) {
+					g.actions[key]()
+				}
+
+			}
+
+			g.update()
+
+			context.clearRect(0, 0, canvas.width, canvas.height)
+
+			g.draw()
+		}, 1000 / 30)
+
+		return g
+
+	}
+
+	var Paddle = function () {
+		var image = imageFromPath('1.png')
+		var o = {
+			image: image,
+			x: 100,
+			y: 200,
+			speed: 5,
+		}
+		o.moveLeft = function () {
+			o.x -= o.speed
+		}
+		o.moveRight = function () {
+			o.x += o.speed
+		}
+		o.collide = function(ball) {
+			if (ball.y + ball.image.height > o.y) {
+				if (ball.x > o.x && ball.x < o.x + o.image.width) {
+					return true
+				}
+			}
+			return false
+		}
+		return o
+	}
+
+	var Ball = function () {
+		var image = imageFromPath('2.png')
+		var o = {
+			image: image,
+			x: 100,
+			y: 200,
+			speedX: 10,
+			speedY: 10,
+			fired: false,
+		}
+
+		o.fire = function() {
+			o.fired = true
+		}
+
+		o.move = function() {
+			if(o.fired) {
+				if(o.x < 0 || o.x > 400 - image.width) {
+					o.speedX *= -1
+				}
+				if(o.y < 0  || o.y > 300 - image.height) {
+					o.speedY *= -1
+				}
+
+				o.x += o.speedX
+				o.y += o.speedY
+			}
+		}
+
+		return o
+	}
+
+	var __main = function () {
+		var game = Game()
+
+		var paddle = Paddle()
+		var ball = Ball()
+
+		game.registerAction('a', () => {
+			paddle.moveLeft()
+		})
+
+		game.registerAction('d', () => {
+			paddle.moveRight()
+		})
+
+		game.registerAction('f', () => {
+			ball.fire()
+		})
+
+		game.update = function () {
+			ball.move()
+			if (paddle.collide(ball)) {
+				ball.speedY *= -1
+			}
+		}
+
+		game.draw = function () {
+			game.drawImage(paddle)
+			game.drawImage(ball)
+		}
+
+	}
+
+	__main()
 </script>
 
 </html>
