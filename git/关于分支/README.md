@@ -11,3 +11,9 @@ git log --all --graph
 
 git log --oneline
 一行显示信息
+
+git merge 分支名
+合并分支
+
+git push -u 仓库名 分支名
+推送
