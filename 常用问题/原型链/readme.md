@@ -12,6 +12,8 @@
   var p = {name: 'p'};
   var o4 = Object.create(p);
 
+  区别：new创建可以利用构造函数 create只能通过对象创建
+
 原型链
 
   通过在构造函数的prototype上添加方法 可使所有共用该原型链的实例一起添加
