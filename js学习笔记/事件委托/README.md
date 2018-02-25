@@ -16,3 +16,6 @@ event.preventDefault()用于阻止事件的默认行为 如enter插入回车等�
     document.getElementById('x').addEventListener('click',function(e){
         e.target  //e.target就是被点击的元素
     })
+
+ event.currentTarget指的被绑定的事件的元素 一般为父元素
+ 
