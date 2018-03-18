@@ -2,12 +2,15 @@
 
 1. [Introduction](README.md)
 2. js学习笔记
+
    * AJAX
+
      * [js学习笔记/AJAX/JSONP.html](js学习笔记/AJAX/JSONP.html)
      * [js学习笔记/AJAX/README.md](js学习笔记/AJAX/README.md)
      * [js学习笔记/AJAX/fetch-ajax接口/README.md](js学习笔记/AJAX/fetch-ajax接口/README.md)
 
      DOM
+
 3. html＆css问题
    * [html css问题/css3阴影box-shadow/README.md](html css问题/css3阴影box-shadow/README.md)
    * [html css问题/flex布局/READEME.md](html css问题/flex布局/READEME.md)
