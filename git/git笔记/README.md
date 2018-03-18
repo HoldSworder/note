@@ -1,81 +1,38 @@
-运行步骤
-在需要同步的文件夹右键 git bush here
+1.准备工作
+创建github仓库
+关闭直接push权限
+在settings
 
-运行 git init 初始化仓库 会新增一个隐藏的.git配置文件
+2.创建开发分支
+master分支一般为稳定版本
+dev分支发布开发版本
+新建create branch创建dev分支
 
-git status 查看文件变化
+3.fork项目到个人仓库
+右上角fork到自己的个人仓库
 
-git add -A 添加所有文件
+4.clone到本地
+git clone (地址)即可
+此时看到的是master分支 并没有把dev分支clone下来
+    1.git branch 命令查看本地分支 发现只有master分支
+    2.git branch -a 查看所有分支 包括远程分支
+    3.git checkout -b dev origin/dev 即可创建一个新的本地分支dev并把项目的dev放到本地的dev分支
+      （命令的意思是创建一个dev分支-b 并把远程dev分支（origin/dev）的内容放在该分支 接着切换到该分支（checkout））
+现在使用git branch 可以看到两个分支 ls 或者 dir可以看到分支的内容
+git checkout master 即可切换到master分支
 
-git commit -m "输入提交信息"
+5.和团队项目保持同步
+查看有没有设置upstream 使用 git remote -v 命令查看
+如果没有 则使用 git remote add upstream 团队项目地址 
+接着再次使用 git remote -v 显示upstream 就好了
 
-git log  查看提交信息
+同步
+git fetch upstream 获取项目新版本
+git merge upstream/dev 将源分支（upstream/dev）合并到当前分支dev
 
-git diff  查看文件做了哪些变化
+6.push修改到自己的仓库
+git push
 
-git checkout -- . 撤销更改(没有commit的情况下)
-
-//版本回退
-在git log中可以找到commit开头的16进制版本号
-git reset --hard xxxxxxx(取前7位就可以)
-会直接删除最新版的git log中的信息
-
-//回到最新版
-git reflog 可以查看所有HEAD的变化情况和提交信息
-可以在其中找到所有的版本号
-再利用 git reset 命令回到最新版
-
-//删除文件夹内所有未追踪的文件
-git clean -xf
-
-//中文乱码
-中文文件名在git status中乱码
-使用 git config --global core.quotepath false
-
-//将git与github关联
-1.本地配置用户名和邮箱
-git config --global user.name "你的用户名"
-git config --global user.email "你的邮箱"
-
-2.生成ssh key
-运行 ssh-keygen -t rsa -C "你的邮箱"
-回车三次
-clip < ~/.ssh/id_rsa.pub 命令将ssh key复制到剪贴板
-
-3.打开github 进入settings
-左边SSH and GPG keys
-new SSH key
-粘贴到key
-add SSH key
-执行ssh -T git@github.com 测试是否成功（选择yes）
-
-4.创建远程仓库关联本地
-取到github仓库的SSH地址（clone or download中）ssh比https快
-运行 git remote add origin 你复制的地址
-git push -u origin master 将本地仓库上传至github
-以后直接执行 git push 命令即可
-
-这里有几个坑
-1.git无法pull仓库refusing to merge unrelated histories
- 需要合并两个不同的仓库和项目
- git pull origin master ----allow-unrelated-histories  即可
-
-2. ! [rejected] master -> master (non-fast-forward)
- 两个仓库的文件不同 
- 方法一：git pull到本地 再上传
- 方法二：git push -f 强制覆盖
-
-
-
-
-其他命令
-
-git pull 复制代码到本地
-
-git clone （地址） 下载代码
-快速关联空仓库方法
-利用 git clone命令
-省去了 init / git remote add origin /git push -u origin master
-
-
-
+7.请求合并到团队项目
+点击 Pull request
+create pull request 发起合并请求
