@@ -1,11 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [js学习笔记](jsxue-xi-bi-ji.md)
-  * AJAX
-    * [js学习笔记/AJAX/JSONP.html](js学习笔记/AJAX/JSONP.html)
-    * [js学习笔记/AJAX/README.md](js学习笔记/AJAX/README.md)
-    * [js学习笔记/AJAX/fetch-ajax接口/README.md](js学习笔记/AJAX/fetch-ajax接口/README.md)
+
 * [html＆css问题](htmlcsswen-ti.md)
   * [html css问题/css3阴影box-shadow/README.md](html css问题/css3阴影box-shadow/README.md)
   * [html css问题/flex布局/READEME.md](html css问题/flex布局/READEME.md)
