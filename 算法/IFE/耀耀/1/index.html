@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p{
+      margin-left: 40px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span>名称</span>
+    <input type="text" name="" value="">
+    <button type="">验证</button>
+    <p>必填，长度为4~16个字符</p>
+  </div>
+</body>
+
+<script>
+  var input = document.querySelector('input')
+  var button = document.querySelector('button')
+  var text = document.querySelector('p')
+  
+  function filter() {
+    if(input.value.length == 0) {
+      text.innerHTML = '姓名不能为空'
+      input.style.borderColor = 'red'
+      text.style.color = 'red'
+      return
+    }
+    
+    var arr = input.value.split('')
+    var num = 0
+    var mis = /\W/
+    var cn = /[^\x00-\xff]/
+
+    arr.forEach(i => {
+      if(cn.test(i)) {
+        num += 2
+      }else {
+        num += 1
+      }
+    })
+
+    console.log(num)
+
+    if(num < 4 || num > 16) {
+      text.innerHTML = '长度必须为4~16'
+      input.style.borderColor = '#999'
+      text.style.color = '#999'
+    }else {
+      text.innerHTML = '名称格式正确'
+      input.style.borderColor = 'green'
+      text.style.color = 'green'
+    }
+  }
+
+  button.addEventListener('click', () => {
+    filter()
+  })
+</script>
+</html>

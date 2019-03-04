@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active {
+          background-color: black;  
+        }
+        .liked{
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model.lazy='name'>
+            <span v-show='name'>你的名字是：{{name}}</span>
+        </div>
+        <div>
+            <input type="text" v-model='age'>
+            <span v-show='age'>你的年龄是：{{age}}</span>
+        </div>
+        <div>
+            <input type="text" v-model='sex'>
+            <span v-show='sex'>你的性别是：{{sex}}</span>
+        </div>
+
+        <ul>
+            <li v-for='food in foodList'>{{food.name}}：￥{{food.price}}</li>
+        </ul>
+
+        <a v-bind:href="url" :class="{active: isActive}">百度</a>
+
+        <button v-on:click='onClick' v-on='{mouseenter: onEnter, mouseleave: onOut}'>点我</button>
+
+        <form v-on:submit.prevent='onSubmit' v-on:keyup.enter='onEnter'>
+            <input type="text">
+            <button type="submit">点我提交</button>
+        </form>
+
+        <select v-model='from'>
+            <option value="1">abc</option>
+            <option value="2">cba</option>
+        </select>
+
+        <select v-model='mult' multiple>
+            <option value="1">cba</option>
+            <option value="2">abc</option>
+            <option value="3">abc</option>
+            <option value="4">abc</option>
+            <option value="5">abc</option>
+        </select>
+        {{mult}}
+
+        <div v-if='role == "admin"'>
+            管理员你好
+        </div>
+        <div v-else-if='role == "hr"'>
+            hr你好
+        </div>
+        <div v-else>
+            您没有权限访问此页面
+        </div>
+
+        <table border="1">
+            <thead>
+                <th>学科</th>
+                <th>分数</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>数学</td>
+                    <td><input type="text" v-model.number='math'></td>
+                </tr>
+                <tr>
+                    <td>物理</td>
+                    <td><input type="text" v-model.number='physics'></td>
+                </tr>
+                <tr>
+                    <td>英语</td>
+                    <td><input type="text" v-model.number='english'></td>
+                </tr>
+                <tr>
+                    <td>总分</td>
+                    <td>{{sum}}</td>
+                </tr>
+                <tr>
+                    <td>平均分</td>
+                    <td>{{average}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="app1">
+        <alert></alert>
+    </div>
+    <div id="app2">
+        <like></like>
+    </div>
+
+</body>
+
+<script src="lib/vue.js"></script>
+<script src="js/main.js"></script>
+<script src="js/a.js"></script>
+<script src="js/b.js"></script>
+
+</html>

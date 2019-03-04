@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    
+</head>
+<body>
+    <p id="test-jsonp">sdfa</p>
+</body>
+
+<script>
+    function refreshPrice(data) {
+        var p = document.getElementById('test-jsonp');
+        p.innerHTML = '当前价格：' +
+            data['0000001'].name +': ' + 
+            data['0000001'].price + '；' +
+            data['1399001'].name + ': ' +
+            data['1399001'].price;
+    }
+
+    function getPrice() {
+        var
+            js = document.createElement('script'),
+            head = document.getElementsByTagName('head')[0];
+        js.src = 'http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice';
+        head.appendChild(js);
+    }
+
+    getPrice();
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/2.4.1/vuex.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button @click='add'>Change</button>
+        <counter></counter>
+    </div>
+
+<script>
+    const counter = {
+        template: `
+            <div>
+                <p>number:{{ count }}</p>
+                <p>name:{{ name }}</p>
+                <p>getter:{{ userName }}</p>
+            </div>
+        `,
+        computed:{
+            count() {
+                return this.$store.state.count;
+            },
+            name() {
+                return this.$store.state.name
+            },
+            userName() {
+                return this.$store.getters.userName
+            }
+        }
+    }
+
+    const store = new Vuex.Store({
+        state:{
+            count: 10,
+            name: 'qzr',
+        },
+        mutations:{
+            increment(state,num) {  //可以传参num
+                state.count = num
+            },
+            changeName(state,name) {
+                state.name = name
+            }
+        },
+        actions:{
+            incrementAction(context,num) {
+             context.commit('increment',num);
+            }
+        },
+        getters: {
+            userName(state) {
+                return state.name + ',Hello'; //对state值的简单处理
+            }
+        }
+    })
+    
+    new Vue({
+        el: '#app',
+        store,
+        data: {
+            msg: 'Vuex的使用'
+        },
+        components: {
+            counter
+        },
+        methods: {
+            add() {
+                this.$store.commit('increment',100) //提交在vuex中定义的函数
+                // this.$store.dispatch('incrementAction',100) //异步提交方法配合actions
+                this.$store.commit('changeName', 'HD')
+            }
+        }
+    })
+</script>
+</body>
+</html>

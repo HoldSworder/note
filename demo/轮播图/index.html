@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        img{
+            display: none;
+            width: 1280px;
+            height: 720px;
+        }
+        .active{
+            display: block;
+        }
+        .box {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+        }
+        button {
+            position: absolute;
+            height: 100%;
+        }
+        .next {
+            right: 0;
+        }
+        .after {
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box">
+        <button class="next">下一张</button>
+        <img src="1.jpg" class="active" alt="">
+        <img src="2.jpg" alt="">
+        <img src="3.jpg" alt="">
+        <img src="4.jpg" alt="">
+        <img src="5.jpg" alt="">
+        <button class="after">上一张</button>
+    </div>
+</body>
+<script>
+    var a = 0;
+    var b = 5;
+    function next() {
+        a = (a + 1) % b
+        var box = document.querySelector('.box')
+        var image = document.querySelector('.active')
+        image.classList.remove('active')
+        var active = document.querySelectorAll('img')[a]
+        active.classList.add('active')
+    }
+
+    function after() {
+        a = Math.abs(-a - 1) % b
+        var box = document.querySelector('.box')
+        var image = document.querySelector('.active')
+        image.classList.remove('active')
+        var active = document.querySelectorAll('img')[a]
+        active.classList.add('active')
+    }
+
+    var button_after = document.querySelector('.after')
+    button_after.addEventListener('click', function(){
+        after()
+    })
+
+
+    var button_next = document.querySelector('.next')
+    button_next.addEventListener('click', function(){
+        next()
+    })
+    setInterval(next, 1000)
+</script>
+</html>

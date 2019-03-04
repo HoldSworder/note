@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todo</title>
+    <style>
+        .ok{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-main">
+        <div class="form">
+            <input type="text" id="text">
+            <button id="add">add</button>
+        </div>
+        
+        <div class="container">
+            <div class="cell">
+                <button class="done">完成</button>
+                <button class="delete">删除</button>
+                <span>上课</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+        var add = document.querySelector('#add')
+        add.addEventListener('click', function(){
+            var text = document.querySelector('#text').value
+            var container = document.querySelector('.container')
+
+            // var str = function(v){ 
+            //    var a =  `
+            //         <div class="cell">
+            //             <button class="done">完成</button>
+            //             <button class="delete">删除</button>
+            //             <span>${v}</span>
+            //         </div>
+            //     ` 
+            //     return a
+            // }
+            var str =  `
+                    <div class="cell">
+                        <button class="done">完成</button>
+                        <button class="delete">删除</button>
+                        <span>${text}</span>
+                    `
+
+            // var b = str(text)
+            container.insertAdjacentHTML('beforeEnd', str)
+
+        })
+
+        var container = document.querySelector('.container')
+       
+
+        container.addEventListener('click', function(event){
+            var target = event.target
+            var div = target.parentElement
+            if(target.classList.contains('done')){
+                toggleClass(div, 'ok')
+            }else{
+                div.remove()
+            }
+        })
+
+        function toggleClass(a, b){
+            if(a.classList.contains(b)){
+                a.classList.remove(b)
+            }else{
+                a.classList.add(b)
+            }
+        }
+        
+ 
+</script>
+</html>

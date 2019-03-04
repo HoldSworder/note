@@ -1,0 +1,6 @@
+实现观察者原理
+
+es5的Object.defineProperty方法
+
+通过这个方法，可以自定义getter和setter函数，从而在获取对象属性和设置对象属性的时候能执行自定义的回调函数
+
