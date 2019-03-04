@@ -3,10 +3,9 @@
 技术栈
 vue.js vue-cli vue-router axios vuex webpack stylus
 
-目前学习顺序</br>
-    `js` => `node.js` => `webpack` => `vue.js` => `weex`
------
+学习目标</br>
+    `TypeScript` => `node.js` => `webpack` => `weex` => `mpvue` => `electron` => `react`
 
-    fetch  新ajax方法
-    jade   html模版引擎
-    emmmmm........
+计算机知识</br>
+    `计算机基础` => `网络相关` => `数据结构与算法` => `设计模式`
+-----
