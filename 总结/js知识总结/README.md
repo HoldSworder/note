@@ -1,4 +1,4 @@
-##js知识体系汇总
+###js知识体系汇总
 
 #1、数据类型
 js中有7种数据类型：string、number、boolean、null、undefined、symbol、object
