@@ -22,3 +22,26 @@ const child = new Child(1)
 ```js
 
 ```
+
+#原型链的继承
+通过将子类的__proto__属性指向父类的prototype来实现继承
+同时自身prototype对自身是不可见的
+所以当
+```js
+  obj.__proto__ = Parent.prototype
+```
+
+#new关键字的用法
+```js
+function Animal(name) {
+  this.name = name
+}
+
+let cat = new Animal('cat') = { //伪代码
+  let obj = {}  //新建一个对象
+  obj.__proto__ = Animal.prototype  //将新对象（子）的proto属性指向父的prototype属性
+  let result = Animal.call(obj, 'cat')  //将子元素的this指向自身
+  return typeof result === 'object' ? result : obj
+}
+
+```

@@ -25,3 +25,4 @@
   此处无论是上面的o3还是o5都有say方法
 
   顶层是object.prototype
+  
