@@ -17,8 +17,9 @@
     * [输入框高亮](html&css问题/输入框高亮/README.md)
     * [选取带连接线的元素](html&css问题/选取带连接线的元素/README.md)
 * [H5](H5/README.md)
-    * [H5/编辑标签](H5/编辑标签/README.md)
+    * [编辑标签](H5/编辑标签/README.md)
 * [git](git/README.md)
-    * [git/git 笔记](git/git笔记/README.md)
-    * [git/关于分支](git/关于分支/README.md)
-    * [git/如何在 github 里预览页面](git/如何在github里预览页面/README.md)
+    * [git 笔记](git/git笔记/README.md)
+    * [关于分支](git/关于分支/README.md)
+    * [如何在 github 里预览页面](git/如何在github里预览页面/README.md)
+
