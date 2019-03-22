@@ -7,3 +7,4 @@
     * [this指向](js面试考点/this指向/README.md)
     * [深浅拷贝](js面试考点/深浅拷贝/README.md)
     * [继承](js面试考点/继承/README.md)
+    * [new](js面试考点/new/README.md)
