@@ -1,7 +1,7 @@
 # Summary
 
 * [前言](README.md)
-* [面试考点]
+* [js难点](总结/js知识总结/README.md)
     * [函数防抖和节流](js面试考点/函数的防抖和节流/README.md)
     * [bind、apply、call](js面试考点/bind、apply、call区别/README.md)
     * [this指向](js面试考点/this指向/README.md)
