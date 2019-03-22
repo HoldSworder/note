@@ -7,7 +7,7 @@
     * [this指向](js面试考点/this指向/README.md)
     * [深浅拷贝](js面试考点/深浅拷贝/README.md)
     * [继承](js面试考点/继承/README.md)
-* [html&css 问题](html&css问题/README.md)
+<!-- * [html&css 问题](html&css问题/README.md)
     * [css3 阴影 box-shadow](html&css问题/css3阴影box-shadow/README.md)
     * [flex 布局](html&css问题/flex布局/READEME.md)
     * [ie 文件兼容性设置](html&css问题/ie文件兼容性设置/README.md)
@@ -27,5 +27,5 @@
 * [git](git/README.md)
     * [git 笔记](git/git笔记/README.md)
     * [关于分支](git/关于分支/README.md)
-    * [如何在 github 里预览页面](git/如何在github里预览页面/README.md)
+    * [如何在 github 里预览页面](git/如何在github里预览页面/README.md) -->
 
