@@ -1,6 +1,12 @@
 # Summary
 
 * [前言](README.md)
+* [面试考点]
+    * [函数防抖和节流](js面试考点/函数的防抖和节流/README.md)
+    * [bind、apply、call](js面试考点/bind、apply、call区别/README.md)
+    * [this指向](js面试考点/this指向/README.md)
+    * [深浅拷贝](js面试考点/深浅拷贝/README.md)
+    * [继承](js面试考点/继承/README.md)
 * [html&css 问题](html&css问题/README.md)
     * [css3 阴影 box-shadow](html&css问题/css3阴影box-shadow/README.md)
     * [flex 布局](html&css问题/flex布局/READEME.md)
