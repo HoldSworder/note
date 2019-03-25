@@ -8,3 +8,4 @@
     * [深浅拷贝](js面试考点/深浅拷贝/README.md)
     * [继承](js面试考点/继承/README.md)
     * [new](js面试考点/new/README.md)
+    * [排序算法](js面试考点/排序算法/README.md)
