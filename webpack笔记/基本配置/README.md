@@ -1,6 +1,6 @@
 # 基本配置
 
-npm init -y 初始化npm
+npm init -y 初始化 npm
 
 npm i webpack-cli webpack -D
 
@@ -233,6 +233,62 @@ optimization:{  //优化
     }
 ```
 
+11. 接入 postcss 自动添加 css 前缀 stylus
+
+安装 postcss postcss-loader autoprefixer -D
+
+安装 stylus stylus-loader -D
+
+```js
+//webpack.config.js
+{
+    test: /\.styl$/,
+    use: [
+        {loader: MiniCssExtractPlugin.loader},
+        'css-loader',
+        'postcss-loader',
+        'stylus-loader'
+    ]
+}
+```
+
+根目录新建 postcss.config.js
+
+```js
+//postcss.config.js
+module.exports = {
+  plugins: [require('autoprefixer')]
+}
+```
+
+12. 接入 typescript
+
+安装 typescript ts-loader
+
+```js
+//webpack.config.js
+{
+  test: /\.ts$/,
+  use: 'ts-loader',
+  exclude: /node_modules/
+}
+
+//新建tsconfig.json
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": true
+  },
+  "include": [
+    "./src/*"
+  ],
+  "exclude": [
+    "./node_modules"
+  ]
+}
+```
+
 # 最终 config 代码
 
 ```js
@@ -271,6 +327,15 @@ module.exports = {
               outputPath: 'images/'
             }
           }
+        ]
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          'css-loader',
+          'postcss-loader',
+          'stylus-loader'
         ]
       }
     ]
