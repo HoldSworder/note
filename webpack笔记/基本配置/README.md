@@ -1,5 +1,9 @@
 # 基本配置
 
+npm init -y 初始化npm
+
+npm i webpack-cli webpack -D
+
 在 webpack4.0 中存在默认配置
 
 可在根目录新建 webpack.config.js 文件覆盖默认配置
