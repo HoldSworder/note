@@ -10,5 +10,23 @@ let cat = new Animal('cat') = { //伪代码
   let result = Animal.call(obj, 'cat')  //将子元素的this指向自身
   return typeof result === 'object' ? result : obj
 }
+```
+
+# 实现一个new
+```js
+function Animal(name) {
+  this.name = name
+  return name
+}
+
+Animal.say = function() {
+  console.log(this.name)
+}
+
+function _new(fn, ...args) {
+  const obj = Object.create(fn.prototype)
+  const ret = fn.apply(obj, args)
+  return ret instanceof Object ? ret : obj
+}
 
 ```
