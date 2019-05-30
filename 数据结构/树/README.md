@@ -30,13 +30,13 @@
 
 ```js
 class Node {
-  constructor(key) {
-    this.key = key
+  constructor(val) {
+    this.val = val
     this.left = null
     this.right = null
   }
   show() {
-    return this.key
+    return this.val
   }
 }
 
@@ -46,7 +46,7 @@ class BST {
   }
 
   static insertNode(node, newNode) {
-    if (node.key > newNode.key) {
+    if (node.val > newNode.val) {
       if (node.left === null) {
         node.left = newNode
       } else {
@@ -61,8 +61,8 @@ class BST {
     }
   }
 
-  insert(key) {
-    const newNode = new Node(key)
+  insert(val) {
+    const newNode = new Node(val)
 
     if (this.root === null) {
       this.root = newNode

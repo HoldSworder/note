@@ -1,11 +1,12 @@
 # 斐波那契数列
+
 斐波那契数列指的是类似于以下的数列：
 
 [1, 1, 2, 3, 5, 8, 13, ...]
 
 也就是，第 n 个数由数列的前两个相加而来：f(n) = f(n - 1) + f(n -2)
 
-输入n输出数列中的第n项
+输入 n 输出数列中的第 n 项
 
 ```js
 // 计算完整数列版
@@ -20,5 +21,12 @@ function fibonacci(n) {
     }
   }
   return arr[n - 1]
+}
+
+function fib(n) {
+  if(n < 0) return 0
+  if(n < 2) return n
+
+  return fib(n - 1) + fib(n - 2)
 }
 ```
