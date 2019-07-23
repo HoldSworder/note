@@ -91,7 +91,7 @@ let person = {
 
 let son = object(person)
 
-// 后被规范为object.create()方法
+// 在ES5被规范为object.create()方法
 // 缺点：和原型链继承类似 包含引用类型值的属性会共享 牵一发动全身
 ```
 
@@ -109,6 +109,7 @@ function createAnother(original) {
 ```
 
 6. 寄生组合式继承
+
 ```js
 function Father(name) {
   this.name = name
@@ -116,7 +117,7 @@ function Father(name) {
 }
 
 Father.prototype.sayName = function() {
-  console.log(this.name)
+  console.log(this.name) //只继承了构造函数上的属性
 }
 
 function Son() {
@@ -124,10 +125,33 @@ function Son() {
 }
 
 // 开始实现
-// Object.create 创建没有实例属性的父类实例
+// Object.create 创建没有实例属性的父类实例 用于继承父类prototype上定义的属性
 let p = Object.create(Father.prototype)
+// 这里的 p 只是个普通对象，没有 constructor 属性，手动添加一下 弥补因重写原型而失去的默认的 constructor属性 constructor属性指向构造函数
+p.constructor = Son
 // 修改子类构造函数原型对象
 Son.prototype = p
-// 这里的 p 只是个普通对象，没有 constructor 属性，手动添加一下
-p.constructor = Son
+
+function inheritPrototype(subType, superType) {
+  let prototype = Object.creat(superType.prototype) //创建对象
+  prototype.constructor = subType //增强对象
+  subType.prototype = prototype //指定对象
+}
+```
+### 修改后的组合继承
+```js
+function Father(name) {
+  this.name = name
+  this.color = ['red','blue']
+}
+
+Father.prototype.sayName = function() {
+  console.log(this.name)
+}
+
+function Son(name) {
+  Father.call(this, name)
+}
+
+inheritPrototype(Son, Father)
 ```
