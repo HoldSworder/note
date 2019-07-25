@@ -51,15 +51,15 @@ cat1.hasOwnProperty("aaa") //false
 ```
 
 ## 总结
-构造函数会有一个**prototype**属性
+1. 构造函数会有一个**prototype**属性，实例会有一个__proto__属性 他们均指向原型对象
 
-实例会有一个__proto__属性 他们的指向是一致的
+2. 原型对象的__proto__属性指向更上一级的原型对象
 
-![原型链](1.png)
+3. 原型对象的constructor属性指向构造函数
 
-1. 所有对象的__proto__都执行No2
-2. Function的**prototype**同样指向No2
-3. Object的**prototype**指向No1
+4. 所有的实例通过原型链都指向Object的原型对象 最终指向null
+
+![原型链](2.png)
 
 so
 ```js

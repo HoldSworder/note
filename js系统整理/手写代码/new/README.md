@@ -7,6 +7,7 @@ function Animal(name) {
 let cat = new Animal('cat') = { //伪代码
   let obj = {}  //新建一个对象
   obj.__proto__ = Animal.prototype  //将新对象（子）的proto属性指向父的prototype属性
+  //Object.setPrototypeOf(obj, Animal) // Es6
   let result = Animal.call(obj, 'cat')  //将子元素的this指向自身
   return typeof result === 'object' ? result : obj
 }
