@@ -33,7 +33,7 @@ app.use(bodyParser())
 
 //挂载路由
 app.use(async ctx => (ctx.body = '服务启动'))
-app.use(router.router())
+app.use(router.routes())
 app.use(router.allowedMethods())
 ```
 
