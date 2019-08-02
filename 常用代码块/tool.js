@@ -47,4 +47,8 @@ class Tool {
 
     return result
   }
+
+  static checkType(target) {
+    return Object.prototype.toString.call(target).slice(8, -1)
+  }
 }
