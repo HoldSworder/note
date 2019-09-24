@@ -70,5 +70,47 @@ class BST {
       this.insertNode(this.root, newNode)
     }
   }
+
+  //前序遍历
+  preOrder(node, callback) {
+    if (node) {
+      callback()
+      preOrder(node.left, callback)
+      preOrder(node.right, callback)
+    }
+  }
+
+  //中序遍历
+  inOrder(node, callback) {
+    if (node) {
+      inOrder(node.left, callback)
+      callback()
+      inOrder(node.right, callback)
+    }
+  }
+
+  //后序遍历
+  postOrder(node, callback) {
+    if (node) {
+      postOrder(node.left, callback)
+      postOrder(node.right, callback)
+      callback()
+    }
+  }
+
+  //查找节点
+  searchNode(data, node) {
+    if (node) {
+      if (node.val == data) {
+        return node
+      } else if (data < node.val) {
+        return searchNode(data, node.left)
+      }else {
+        return searchNode(data, node.right)
+      }
+    } else {
+      return null
+    }
+  }
 }
 ```

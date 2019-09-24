@@ -16,6 +16,7 @@ class stack {
     this.stack.pop()
   }
 
+  //查看栈顶元素
   peek() {
     return this.stack[this.stack.length - 1]
   }
@@ -25,7 +26,7 @@ class stack {
   }
 
   clear() {
-    return this.stack.length == 0
+    return (this.stack.length = 0)
   }
 }
 ```
