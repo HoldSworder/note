@@ -1,12 +1,17 @@
-下载egg-validate
+# 参数验证
+
+下载 egg-validate
 
 配置插件
 
-在controller中使用
+在 controller 中使用
 
 ```js
-ctx.validate({
+ctx.validate(
+  {
     name: 'string',
-    password: 'string',
-}, ctx.query)
+    password: 'string'
+  },
+  ctx.query
+)
 ```
