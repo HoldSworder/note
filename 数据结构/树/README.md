@@ -30,13 +30,13 @@
 
 ```js
 class Node {
-  constructor(key) {
-    this.key = key
+  constructor(val) {
+    this.val = val
     this.left = null
     this.right = null
   }
   show() {
-    return this.key
+    return this.val
   }
 }
 
@@ -46,7 +46,7 @@ class BST {
   }
 
   static insertNode(node, newNode) {
-    if (node.key > newNode.key) {
+    if (node.val > newNode.val) {
       if (node.left === null) {
         node.left = newNode
       } else {
@@ -61,13 +61,55 @@ class BST {
     }
   }
 
-  insert(key) {
-    const newNode = new Node(key)
+  insert(val) {
+    const newNode = new Node(val)
 
     if (this.root === null) {
       this.root = newNode
     } else {
       this.insertNode(this.root, newNode)
+    }
+  }
+
+  //前序遍历
+  preOrder(node, callback) {
+    if (node) {
+      callback()
+      preOrder(node.left, callback)
+      preOrder(node.right, callback)
+    }
+  }
+
+  //中序遍历
+  inOrder(node, callback) {
+    if (node) {
+      inOrder(node.left, callback)
+      callback()
+      inOrder(node.right, callback)
+    }
+  }
+
+  //后序遍历
+  postOrder(node, callback) {
+    if (node) {
+      postOrder(node.left, callback)
+      postOrder(node.right, callback)
+      callback()
+    }
+  }
+
+  //查找节点
+  searchNode(data, node) {
+    if (node) {
+      if (node.val == data) {
+        return node
+      } else if (data < node.val) {
+        return searchNode(data, node.left)
+      }else {
+        return searchNode(data, node.right)
+      }
+    } else {
+      return null
     }
   }
 }
