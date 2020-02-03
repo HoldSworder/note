@@ -18,3 +18,4 @@ let pathOne = path.resolve('rooot/a/b', '../c', 'd', '..', 'e')
 //一般返回绝对路径，_dirname指的就是当前目录
 let pathTwo = path.resolve(_dirname, 'build')
 ```
+
