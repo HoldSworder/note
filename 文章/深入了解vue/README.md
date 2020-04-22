@@ -35,3 +35,9 @@ vue会将传入vue的参数转化为render对象
     vnode = render.call(vm._renderProxy, vm.$createElement)
 
 vnode通过patch方法转化为真实的DOM
+
+## 运行流程
+
+1. 初始化及挂载
+
+在new Vue()后。vue会调用_init进行初始化
