@@ -2,7 +2,7 @@
 
 1. number
 
-number => boolean   除了0，-1，NaN都为true
+number => boolean   除了0，-0，NaN都为true
 
 number => string    
 
