@@ -9,9 +9,7 @@ function sort(arr) {
   for(let i = 0; i < len - 1; i++) {
     for(let j = 0; j < len - i - 1; j++) {  //排除最后已经确定的元素进行循环
       if(arr[j + 1] < arr[j]) {
-        let copy = arr[j]
-        arr[j] = arr[j + 1]
-        arr[j + 1] = copy
+        [a[j], a[j + 1]] = [a[j + 1], a[j]]
       }
     }
   }
@@ -31,10 +29,10 @@ function sort(arr) {
         min = j
       }
     }
-    let copy = arr[i]
-    arr[i] = arr[min]
-    arr[min] = copy
+    [arr[min], arr[i]] = [arr[i], arr[min]]
   }
+
+  return arr
 }
 ```
 
@@ -42,7 +40,7 @@ function sort(arr) {
 原理： 随便选择一个基数 按照顺序将数组分为小于基数和大于基数两个子集 对子集重复以上步骤 直到所有子集只剩一个元素为止 
 
 ```js
-function sort(arr) {
+function quickSort(arr) {
   if(arr.length <= 1) return arr
 
   let median = Math.floor(arr.length / 2),
@@ -51,7 +49,7 @@ function sort(arr) {
       right = []
 
   arr.map(x => {
-    if(x > median) right.push(x)
+    if(x > pivot) right.push(x)
     else left.push(x)
   })
 
