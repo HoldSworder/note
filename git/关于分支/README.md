@@ -46,6 +46,13 @@ git log --all --graph
 ## 一行显示信息
 git log --oneline
 
+## 拉取远程分支到本地
+git checkout remotes/origin/[branch name]       
+
+git checkout -b [branch name]
+
+git branch --set-upstream-to=origin/[branch name]       // 跟远程分支建立联系 否则无法pull
+
 ## 合并分支
 git merge(--Fast-forward) 分支名 （默认）如果两个分支来自同一个上游 合并操作不会留下痕迹
 
