@@ -1,7 +1,7 @@
-导出
--------
-通过命令行工具进行打包
-------
+# 导出
+
+## 通过命令行工具进行打包
+
 
     # {extry file}出填写入口文件的路径，本文中就是上述main.js的路径，
     # {destination for bundled file}处填写打包文件的存放路径
@@ -9,8 +9,7 @@
     webpack {entry file} {destination for bundled file}
 
 
-通过`webpack.config.js`配置文件进行打包
--------------
+## 通过`webpack.config.js`配置文件进行打包
 
 在根目录下新建一个名为`webpack.config.js`文件
 
