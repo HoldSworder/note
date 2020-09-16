@@ -13,6 +13,10 @@ module.exports = {
     node: true,
     es6: true
   },
+  globals: {
+    // 共用变量名
+    upNativeComm: true
+  },
   extends: [
     "plugin:vue/recommended",
     "plugin:prettier/recommended",
