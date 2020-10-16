@@ -1,5 +1,17 @@
 # 常用命令
 
+## 启动
+
+    systemctl status docker.service
+
+## 启动容器
+
+    docker start [ID]
+
+## 容器自启
+
+    docker update --restart=always [ID]
+
 ## 进入容器
 
 docker exec -it -u root ID bash
