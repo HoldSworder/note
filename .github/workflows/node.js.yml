@@ -6,8 +6,6 @@ name: Note CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   upload:
@@ -21,5 +19,5 @@ jobs:
       - name: upload artifact
         uses: actions/setup-node@v1
         with:
-          path: /
+          path: /*
         
