@@ -19,5 +19,6 @@ jobs:
       - name: upload artifact
         uses: actions/setup-node@v1
         with:
+          name: note files
           path: *
         
