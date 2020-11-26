@@ -19,6 +19,7 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
+        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: main
         FOLDER: ${{ github.workspace }}
