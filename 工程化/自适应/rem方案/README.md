@@ -1,7 +1,7 @@
-# postcss-pxtorem + lib-flexible
+# postcss-pxtorem + amfe-flexible
 
 * postcss-pxtorem: 自动转化px为rem
-* lib-flexible: 自动更改根font-size
+* amfe-flexible: 自动更改根font-size
 
 ```cmd
 yarn add amfe-flexible

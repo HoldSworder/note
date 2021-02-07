@@ -6,7 +6,7 @@
 2. 输入
    cd ~/.ssh
 
-3. 输入
+3. 如果上一步没有ssh 生成ssh
    ssh-keygen -t rsa -C "your email"
 
 4. 回车三次 生成三个文件

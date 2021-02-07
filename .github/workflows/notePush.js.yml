@@ -25,3 +25,4 @@ jobs:
         FOLDER: ${{ github.workspace }}
         REPOSITORY_NAME: HoldSworder/note_vuePress
         TARGET_FOLDER: ~/docs/note
+        CLEAN: true
