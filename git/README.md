@@ -15,3 +15,8 @@ git merge --abort
 git rm -r --cached .
 git add .
 git commit -m '更新 .gitignore'
+
+## 同步github仓库 更新到最新的库（与github上的远程库同步）
+
+git fetch --all
+git reset --hard origin/master
