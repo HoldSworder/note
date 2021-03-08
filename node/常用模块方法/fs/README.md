@@ -9,20 +9,16 @@ const fsp = require('fs').promises
 ## 方法
 
 1. fs.readdir 读取目录
-    ```
+
+    ```node
     fs.readdir(path, (err, files) => {})
     ```
 
 2. fs.stat 获取文件信息
 
-    ```
+    ```node
     fs.stat(path, (err, stats))
     ```
-
-    ### stats方法
-
-    * stats.isFile() 判断是否是文件
-    * stats.isDirectory() 判断是否是目录
 
 3. 删除文件/文件夹
 
@@ -37,3 +33,8 @@ const fsp = require('fs').promises
     相对目标是相对于链接的父目录
 
     fs.symlink('./mew', './example/mewtwo', callback)
+
+### stats方法
+
+* stats.isFile() 判断是否是文件
+* stats.isDirectory() 判断是否是目录
