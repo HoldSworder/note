@@ -18,6 +18,10 @@ docker exec -it -u root ID bash
 
 exit 退出容器
 
+## 容器重启
+
+docker restart
+
 ## 1. 查看
 
 * 查看镜像: docker images
