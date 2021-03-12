@@ -51,3 +51,9 @@
     ![构建环境](./chooseNode.png)
 
 ## 配置监听代码提交执行构建
+
+配置webhook
+
+在系统配置=>github=>高级=>为github指定另外一个hookurl
+
+复制到github项目 setting webhook

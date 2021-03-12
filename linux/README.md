@@ -19,3 +19,13 @@ cat ***
 ## 删除
 
 rm -rf DIRPATH
+
+## 打包命令
+
+tar -zcvf dist.tar.gz
+
+tar -xvf dist.tar.gz
+
+## 获取pid
+
+pgrep -f name
