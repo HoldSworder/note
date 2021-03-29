@@ -1,7 +1,7 @@
 # eslint在vue中的配置
 
-```
-yarn add --dev
+```shell
+  yarn add --dev
   eslint-plugin-prettier
   eslint-config-prettier
   prettier-eslint-cli

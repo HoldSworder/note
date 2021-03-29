@@ -6,11 +6,12 @@
 
 更新
 ----------
-cpmn install npm@latest 更新最近版本
 
+cpmn install npm@latest 更新最近版本
 
 安装项目依赖
 --------
+
 install 简写 i
 
 进入工作目录
@@ -31,6 +32,7 @@ npm i jquery@xx  安装特定版本
 
 npm常用配置
 ----------
+
 package.json的scripts中指定的命令
 
 如test
@@ -39,6 +41,7 @@ package.json的scripts中指定的命令
 
 开发环境依赖
 -------
+
 npm i webpack --save-dev
 
 将webpack设置为开发环境依赖 不会在生产环境下使用
