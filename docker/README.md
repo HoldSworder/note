@@ -26,7 +26,8 @@ docker restart
 
 * 查看镜像: docker images
 * 查看运行容器: docker ps
-* 查看运行容器: docker container ls -a
+* 查看所有容器: docker container ls -a
+* 查看所有容器：docker ps -a
 
 ## 2. 停止
 

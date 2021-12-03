@@ -14,31 +14,33 @@ class Promise {
     this.onFulfilledCallbacks = []  //存储fulfilled状态对应的onFulfilled函数
     this.onRejectedCallbacks = [] //存储rejected状态对应的onRejected函数
 
-    const resolve = value => {
-      if(this.state === PENDING) {
-        this.state = FULFILLED
-        this.value = value
-        this.onFulfilledCallbacks.map(cb => {
-          cb = cb(this.value)
-        })
-      }
-    }
-
-    const reject = reason => {
-      if(this.state === PENDING) {
-        this.state = REJECTED
-        this.reason = reason
-        this.onRejectedCallbacks.map(cb => {
-          cb = cb(this.reason)
-        })
-      }
-    }
-
     try{
-      fn(resolve, reject)
+      fn(this.resolve, this.reject)
     }catch(e) {
-      reject(e)
+      this.reject(e)
+    }
+
+  }
+
+  resolve(value) {
+    if(this.state === PENDING) {
+      this.state = FULFILLED
+      this.value = value
+      this.onFulfilledCallbacks.map(cb => {
+        cb = cb(this.value)
+      })
     }
   }
+
+  reject(reason) {
+    if(this.state === PENDING) {
+      this.state = REJECTED
+      this.reason = reason
+      this.onRejectedCallbacks.map(cb => {
+        cb = cb(this.reason)
+      })
+    }
+  }
+
 }
 ```
