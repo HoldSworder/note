@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Promise {
+      constructor(fn) {
+        this.state = 'pending'
+        this.value = null
+        // 解决异步调用
+        this.resolveCallbacks = []
+        this.rejectCallbacks = []
+
+        const resolve = val => {
+          this.value = val
+          this.state = 'fulfilled'
+          this.resolveCallbacks.forEach(fn => fn())
+        }
+  
+        const reject = val => {
+          this.value = val
+          this.state = 'rejected'
+          this.rejectCallbacks.forEach(fn => fn())
+        }
+
+        try {
+          fn(resolve, reject)
+        } catch (error) {
+          reject(error)  
+        }
+      }
+
+      then(onResolve, onReject){
+        // 配合catch实现 链式传递
+        if(typeof onReject !== 'function') {
+          onReject = error => {
+            throw error
+          }
+        }
+
+        if(typeof onResolve !== 'function') {
+          onResolve = value => value
+        }
+
+
+        // 返回promise
+        return new Promise((resolve, reject) => {
+          // 解决链式调用
+          function callback(type) {
+            try {
+                const result = type(this.value)
+                if(result instanceof Promsie) {
+                  result.then(s => {
+                    resolve(s)
+                  }, j => {
+                    reject(j)
+                  })
+                }else {
+                  resolve(result)
+                }
+              } catch (error) {
+                reject(error)  
+              }
+          }
+
+          if(this.state === 'fulfilled') {
+            callback(onResolve)
+          }
+  
+          if(this.state === 'rejected') {
+            callback(onReject)
+          }
+  
+          if(this.state === 'pending') {
+            this.resolveCallbacks.push(() => {
+              callback(onResolve)
+            })
+            this.rejectCallbacks.push(() => {
+              callback(onReject)
+            })
+          }
+        })
+      }
+
+      catch(reject) {
+        return this.then(null, reject)
+      }
+      
+      resolve(val) {
+        return new Promise((resolve, reject) => {
+          if(val instanceof Promise) {
+            val.then(s => {
+              resolve(s)
+            }, j => {
+              reject(j)
+            })
+          }else {
+            resolve(val)
+          }
+        })
+      }
+
+      reject(val) {
+        return new Promise((resolve, reject) => {
+          reject(val)
+        })
+      }
+
+      all(promises) {
+        return new Promise((resolve, reject) => {
+          let count = 0
+          let result = []
+          promises.forEach((item, index) => {
+            item.then(s => {
+              count ++
+              result[index] = s
+              if(count === promises.length) {
+                resolve(result)
+              }
+            }, j => {
+              reject(j)
+            })
+          })
+        })
+      }
+
+      race(promises) {
+        return new Promise((resolve, reject) => {
+          promises.forEach((item, index) => {
+            item.then(s => {
+              resolve(s)
+            }, j => {
+              reject(j)
+            })
+          })
+        })
+      }
+    }
+
+    const test = new Promise((resolve, reject) => {
+      resolve('ok')
+    })
+
+    test.then(val => {
+      console.log(val)
+    }, e => {
+      console.log(e)
+    })
+
+    console.log(test)
+  </script>
+</body>
+</html>

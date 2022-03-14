@@ -1,4 +1,4 @@
-# js运行机制 test
+# js运行机制
 
 [前端部署](https://juejin.cn/post/7017710911443959839)
 [js运行机制](https://segmentfault.com/a/1190000012925872)
