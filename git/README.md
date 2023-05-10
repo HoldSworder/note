@@ -1,4 +1,4 @@
-# git 
+# git
 
 ## 强制拉取 覆盖本地
 
@@ -27,4 +27,19 @@ git commit -m '更新 .gitignore'
 ```git
 git fetch --all
 git reset --hard origin/master
+```
+
+## 清除本地待合并并拉取
+
+```git
+git checkout . 
+git clean -df .
+git pull
+git checkout BRANCHNAME
+```
+
+## 获取当前git信息
+
+```git
+git st
 ```
