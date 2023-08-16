@@ -1,0 +1,17 @@
+name: Trigger Press
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  trigger_project_b:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Press Workflow
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          event-type: note-update
+          token: ${{ secrets.PERSONAL_ACTION_ACCESS_TOKEN }}  # 替换为您的个人访问令牌
+          repository: qzr-blog/note-vitpress
