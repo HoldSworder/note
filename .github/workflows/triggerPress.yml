@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  trigger_project_b:
+  trigger_press:
     runs-on: ubuntu-latest
 
     steps:
