@@ -1,11 +1,15 @@
 arguments关键字
 ----
-在函数中arguments关键字永远指向传入的所有参数</br>
+
+在函数中arguments关键字永远指向传入的所有参数
 常用于取到传入参数的数量  arguments.length
 
 rest参数
 ----
-在函数的参数后加入 ...rest参数 即可以数组的形式返回多余的传入参数</br>
+
+在函数的参数后加入 ...rest参数 即可以数组的形式返回多余的传入参数
+
+```js
     function foo(a, b, ...rest) {
         console.log('a = ' + a);
         console.log('b = ' + b);
@@ -23,14 +27,16 @@ rest参数
     // a = 1
     // b = undefined
     // Array []
-
+```
 
 变量提升
 -----
+
 js函数特点
 会将整个函数体声明的变量‘提升’到顶部
 但是提升变量的声明并不会提升变量的赋值
 
+```js
     function foo() {
         var x = 'Hello, ' + y;
         alert(x);
@@ -38,14 +44,17 @@ js函数特点
     }
 
     foo();
+```
 
 语句var x = 'Hello, ' + y;并不报错，原因是变量y在稍后申明了。但是alert显示Hello, undefined，说明变量y的值为undefined。
 
 命名空间
 -----
+
 全局变量会绑定到`window`上 使用相同的全局变量会造成冲突
 最好的方法是将自己所有的变量和函数全部绑定到一个全局变量中。
 
+```js
     // 唯一的全局变量MYAPP:
     var MYAPP = {};
 
@@ -57,14 +66,17 @@ js函数特点
     MYAPP.foo = function () {
         return 'foo';
     };
+```
 
 类似于jq 或者 vue
 
 局部作用域
 -----
+
 js的变量作用域实际上是在函数内部  for循环等是不存在局部作用域的
 在ES6中引入了新的关键字`let`用来代替`var`可以申明一个块级作用域
 
+```js
     function foo() {
         for (var i=0; i<100; i++) {
             //
@@ -80,22 +92,25 @@ js的变量作用域实际上是在函数内部  for循环等是不存在局部�
         }
         i += 1; // SyntaxError
     }
-
+```
 
 常量
 -----
+
 ES6定义新关键字`const`来定义常量 于`let`一样具有块级作用域
 
+```js
     const PI = 3.14;
     PI = 3; // 某些浏览器不报错，但是无效果！
     PI; // 3.14
-
-
+```
 
 方法
 =====
+
 在一个对象中绑定函数，成为这个对象的方法
 
+```js
     var xiaoming = {
         name: '小明',
         birth: 1990,
@@ -107,9 +122,11 @@ ES6定义新关键字`const`来定义常量 于`let`一样具有块级作用域
 
     xiaoming.age; // function xiaoming.age()
     xiaoming.age(); // 今年调用是25,明年调用就变成26了
+```
 
 this
 ------
+
 this在一个方法内部是一个特殊变量，他始终只想当前对象，也就是`xiaoming`这个变量
 
 this只在`age`方法的函数内指向`xiaoming`假如在函数内部定义的`this`是会报错
@@ -137,6 +154,7 @@ this只在`age`方法的函数内指向`xiaoming`假如在函数内部定义的`
 
 apply
 -----
+
 可以利用函数本身的`apply`方法 定义`this`的指向
 
     function getAge() {
@@ -169,6 +187,7 @@ call()把参数按顺序传入。
 
 装饰器
 -------
+
 利用`apply`可以动态改变函数的行为
 
 JavaScript的所有对象都是动态的，即使内置的函数，我们也可以重新指向新的函数。
@@ -191,6 +210,7 @@ JavaScript的所有对象都是动态的，即使内置的函数，我们也可�
 
 高阶函数
 ======
+
 指的函数可以接收另一个函数作为参数 这种函数被称为高阶函数
 
     function add(x, y, f) {
@@ -199,6 +219,7 @@ JavaScript的所有对象都是动态的，即使内置的函数，我们也可�
 
 map方法
 ------
+
 利用`array`的`map()`方法可以将函数代入数组 对数组每个元素进行函数运算
 
     function pow(x) {
@@ -210,6 +231,7 @@ map方法
 
 reduce方法
 ------
+
 Array的`reduce()`方法把一个函数作用在这个数组的所有元素上 接受2个参数
 
 即把数组中的元素两两按顺序传入reduce()的函数中
@@ -221,8 +243,8 @@ Array的`reduce()`方法把一个函数作用在这个数组的所有元素上 �
         return x + y;
     }); // 25
 
-
 tilter()
 -----
+
 用于筛选函数
 和map一样把数组所有元素作用于函数 根据返回值`true or false`决定保留还是丢弃
